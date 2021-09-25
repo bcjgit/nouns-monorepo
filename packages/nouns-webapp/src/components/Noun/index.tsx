@@ -9,7 +9,7 @@ export const LoadingNoun = () => {
 
 const Noun: React.FC<{ imgPath: string; alt: string }> = props => {
   const { imgPath, alt } = props;
-  return <Image className={classes.img} src={imgPath ? imgPath : loadingNoun} alt={alt} fluid />;
+  return <Image className={classes.img} src={imgPath ? imgPath : loadingNoun} alt={alt} fluid roundedCircle />;
 };
 
 export default Noun;
