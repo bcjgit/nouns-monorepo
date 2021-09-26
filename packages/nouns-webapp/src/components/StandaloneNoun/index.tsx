@@ -1,6 +1,7 @@
 import { BigNumber } from 'ethers';
 import { INounSeed, useNounSeed, useNounToken } from '../../wrappers/nounToken';
 import Noun from '../Noun';
+import { NounCircleImg } from '../Noun';
 
 interface StandaloneNounProps {
   nounId: BigNumber;
@@ -9,6 +10,11 @@ interface StandaloneNounProps {
 interface StandaloneNounWithSeedProps {
   nounId: BigNumber;
   onLoadSeed?: (seed: INounSeed) => void;
+}
+
+interface StandaloneNounCircleImgProps {
+  nounId: BigNumber;
+  isCircle: boolean;
 }
 
 const StandaloneNoun: React.FC<StandaloneNounProps> = (props: StandaloneNounProps) => {
@@ -33,5 +39,15 @@ export const StandaloneNounWithSeed: React.FC<StandaloneNounWithSeedProps> = (
     return <Noun imgPath="" alt="Noun" />;
   }
 };
+
+export const StandaloneNounCircleImg: React.FC<StandaloneNounCircleImgProps> = (
+  props: StandaloneNounCircleImgProps,
+) => {
+  const {nounId, isCircle} = props;
+
+  const noun = useNounToken(nounId);
+
+  return <NounCircleImg imgPath={noun ? noun.image : ''} alt={noun ? noun.description : 'Noun'} isCircle={isCircle}/>;
+}
 
 export default StandaloneNoun;
