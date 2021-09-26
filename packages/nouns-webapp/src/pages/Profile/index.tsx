@@ -5,6 +5,9 @@ import { useAllProposals } from '../../wrappers/nounsDao';
 import NounVoteHistory from '../../components/NounVoteHistory';
 import classes from './Profile.module.css';
 import { BigNumber } from 'ethers';
+import NounProfileCard from '../../components/NounProfileCard';
+
+
 interface ProfilePageProps {
   nounId?: number;
 }
@@ -35,21 +38,7 @@ const ProfilePage: React.FC<ProfilePageProps> = props => {
       <Container>
         <Row>
           <Col sm={4}>
-            <Row>
-               <StandaloneNoun nounId={BigNumber.from(nounId)}/>
-            </Row>
-            <Row>
-              <h1 className={classes.heading}>Noun {nounId}</h1>
-            </Row>
-            <Row>
-              <h2 className={classes.birthday}>Sept 23, 2022</h2>
-            </Row>
-            <Row>
-            <p style={{fontWeight: 'bold'}}>Operated By</p>
-            </Row>
-            <Row>
-            <h2 className={classes.subHeading}>dragonfly.eth</h2>
-            </Row>
+            <NounProfileCard nounId={nounId}/>
           </Col>
           <Col sm={8}>
             {/* TODO this will be repaled with a diff component */}
