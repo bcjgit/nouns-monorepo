@@ -2,6 +2,8 @@ import { Row } from 'react-bootstrap';
 import StandaloneNoun from '../../components/StandaloneNoun';
 import classes from './NounProfileCard.module.css';
 import { BigNumber } from 'ethers';
+import { nounQuery } from '../../wrappers/subgraph';
+import { useQuery } from '@apollo/client';
 
 interface NounProfileCardProps {
     nounId?: number;
@@ -10,15 +12,23 @@ interface NounProfileCardProps {
 const NounProfileCard: React.FC<NounProfileCardProps> = props => {
     const { nounId } = props;
 
-    var nounStartDate = new Date('August 8, 2021');
-
-    if (!nounId) {
+    // TODO confirm that this is the best way to do this ... look how they did it in Auction
+    var nounIdToString = "";
+    if (nounId) {
+        nounIdToString = nounId.toString();
+    }
+    const nounStartDate = new Date('August 8, 2021');
+    const { loading, error, data } = useQuery(nounQuery(nounIdToString));
+    if (!nounId || loading || error) {
         return (
             <div>
                 Failed to load noun info
             </div>
         );
     }
+
+    // TODO
+    console.log(data);
 
     const nounBirthday = nounStartDate.setDate(nounStartDate.getDate() + nounId);
     // TODO get data with GQL here
@@ -37,7 +47,7 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
             <p style={{fontWeight: 'bold'}}>Operated By</p>
             </Row>
             <Row>
-            <h2 className={classes.subHeading}>dragonfly.eth</h2>
+            <h2 className={classes.subHeading}>{data && data.noun.owner.id}</h2>
             </Row>
         </div>
     )

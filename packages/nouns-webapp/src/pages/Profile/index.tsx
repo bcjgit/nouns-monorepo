@@ -1,10 +1,7 @@
 import { Row, Col , Container} from 'react-bootstrap';
-import StandaloneNoun from '../../components/StandaloneNoun';
 import Section from '../../layout/Section';
 import { useAllProposals } from '../../wrappers/nounsDao';
 import NounVoteHistory from '../../components/NounVoteHistory';
-import classes from './Profile.module.css';
-import { BigNumber } from 'ethers';
 import NounProfileCard from '../../components/NounProfileCard';
 
 
