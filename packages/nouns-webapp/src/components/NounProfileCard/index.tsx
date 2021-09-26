@@ -4,6 +4,9 @@ import classes from './NounProfileCard.module.css';
 import { BigNumber } from 'ethers';
 import { nounQuery } from '../../wrappers/subgraph';
 import { useQuery } from '@apollo/client';
+import { useReverseENSLookUp } from '../../utils/ensLookup';
+import React from 'react';
+import ShortAddress from '../ShortAddress';
 
 interface NounProfileCardProps {
     nounId?: number;
@@ -19,6 +22,7 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
     }
     const nounStartDate = new Date('August 8, 2021');
     const { loading, error, data } = useQuery(nounQuery(nounIdToString));
+
     if (!nounId || loading || error) {
         return (
             <div>
@@ -47,7 +51,9 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
             <p style={{fontWeight: 'bold'}}>Operated By</p>
             </Row>
             <Row>
-            <h2 className={classes.subHeading}>{data && data.noun.owner.id}</h2>
+            <h2 className={classes.subHeading}>
+                <ShortAddress address={data && data.noun.owner.id} />
+            </h2>
             </Row>
         </div>
     )
