@@ -31,11 +31,8 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
         );
     }
 
-    // TODO
-    console.log(data);
 
     const nounBirthday = nounStartDate.setDate(nounStartDate.getDate() + nounId);
-    // TODO get data with GQL here
     return (
         <div>
             <Row>
