@@ -16,6 +16,7 @@ import CreateProposalPage from './pages/CreateProposal';
 import VotePage from './pages/Vote';
 import NoundersPage from './pages/Nounders';
 import NotFoundPage from './pages/NotFound';
+import ProfilePage from './pages/Profile';
 import { CHAIN_ID } from './config';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/create-proposal" component={CreateProposalPage} />
           <Route exact path="/vote" component={GovernancePage} />
           <Route exact path="/vote/:id" component={VotePage} />
+          <Route exact path="/profile/:id" render={props => <ProfilePage nounId={Number(props.match.params.id)}/>} />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />
