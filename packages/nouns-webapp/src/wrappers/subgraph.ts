@@ -72,6 +72,33 @@ export const bidsByAuctionQuery = (auctionId: string) => gql`
   }
  `;
 
+ export const proposalVoterQuery = (proposalId: string) => gql`
+ {
+	proposals(where: {id: "${proposalId}"}) {
+		votes {
+		  support,
+		  voter {
+			id
+		  }
+		}
+	  }
+ }
+ `;
+
+
+ export const accountQuery = (accountId: string) => gql`
+ {
+	accounts(where: {id: "${accountId}"}) {
+		votes {
+		  support,
+		  voter {
+			id
+		  }
+		}
+	  }
+ }
+ `;
+
 export const nounQuery = (id: string) => gql`
  {
 	noun(id:"${id}") {

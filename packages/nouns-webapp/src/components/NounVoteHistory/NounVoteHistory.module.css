@@ -12,8 +12,8 @@
 
 .heading {
   display: inline-block;
-  font-size: 2rem;
-  margin: 0 !important;
+  font-weight: bold;
+  font-size: 2.5rem;
 }
 
 .createProposalLink {
@@ -39,12 +39,12 @@
 }
 
 .bidRow {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(211, 211, 211, 0.322);
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border-bottom: 1px solid rgba(211, 211, 211, 0.322);
   font-size: 0.9rem;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .bidCollection {

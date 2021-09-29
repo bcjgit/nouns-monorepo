@@ -32,7 +32,8 @@ function App() {
   const useGreyBg = useAppSelector(state => state.application.useGreyBackground);
 
   return (
-    <div className={`${classes.wrapper} ${useGreyBg ? classes.greyBg : classes.beigeBg}`}>
+    <div className={`${classes.wrapper} ${classes.whiteBg}`}>
+    {/* <div className={`${classes.wrapper} ${useGreyBg ? classes.greyBg : classes.beigeBg}`}> */}
       {Number(CHAIN_ID) !== chainId && <NetworkAlert />}
       {alertModal.show && (
         <AlertModal

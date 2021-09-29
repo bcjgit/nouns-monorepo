@@ -1,42 +1,25 @@
 import { Row } from 'react-bootstrap';
-import StandaloneNoun from '../../components/StandaloneNoun';
+import StandaloneNoun, { StandaloneNounCircleImg } from '../../components/StandaloneNoun';
 import classes from './NounProfileCard.module.css';
 import { BigNumber } from 'ethers';
-import { nounQuery } from '../../wrappers/subgraph';
-import { useQuery } from '@apollo/client';
-import { useReverseENSLookUp } from '../../utils/ensLookup';
 import React from 'react';
 import ShortAddress from '../ShortAddress';
 
 interface NounProfileCardProps {
-    nounId?: number;
+    nounId: number;
+    nounOwnerAddress: string;
 }
 
 const NounProfileCard: React.FC<NounProfileCardProps> = props => {
-    const { nounId } = props;
+    const { nounId , nounOwnerAddress} = props;
 
-    // TODO confirm that this is the best way to do this ... look how they did it in Auction
-    var nounIdToString = "";
-    if (nounId) {
-        nounIdToString = nounId.toString();
-    }
     const nounStartDate = new Date('August 8, 2021');
-    const { loading, error, data } = useQuery(nounQuery(nounIdToString));
-
-    if (!nounId || loading || error) {
-        return (
-            <div>
-                Failed to load noun info
-            </div>
-        );
-    }
-
 
     const nounBirthday = nounStartDate.setDate(nounStartDate.getDate() + nounId);
     return (
         <div>
             <Row>
-               <StandaloneNoun nounId={BigNumber.from(nounId)}/>
+               <StandaloneNounCircleImg nounId={BigNumber.from(nounId)} isCircle={true}/>
             </Row>
             <Row>
               <h1 className={classes.heading}>Noun {nounId}</h1>
@@ -45,11 +28,11 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
               <h2 className={classes.birthday}>{new Date(nounBirthday).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'})}</h2>
             </Row>
             <Row>
-            <p style={{fontWeight: 'bold'}}>Operated By</p>
+            <p style={{fontWeight: 'bold'}}>Current Caretaker:</p>
             </Row>
             <Row>
             <h2 className={classes.subHeading}>
-                <ShortAddress address={data && data.noun.owner.id} />
+                <ShortAddress address={nounOwnerAddress} />
             </h2>
             </Row>
         </div>

@@ -3,25 +3,59 @@ import { Alert, Button, Container, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ProposalStatus from '../ProposalStatus';
 import classes from './NounVoteHistory.module.css';
+import { proposalVoterQuery } from '../../wrappers/subgraph';
+import { useQuery } from '@apollo/client';
+import {Image} from 'react-bootstrap';
 
 
 
 
-const NounVoteRow: React.FC<{id: number, title: string, status: number}> = props => {
 
-  const { id , title, status} = props;
+const NounVoteRow: React.FC<{id: number, title: string, status: number, nounOwnerAddress: string}> = props => {
+
+  const { id , title, status, nounOwnerAddress} = props;
+
+  const {loading, error, data } = useQuery(proposalVoterQuery(id.toString()));
+
+  if (loading || error) {
+    return (
+      <div>
+        something went wrong
+      </div>
+    );
+  }
+
+  const voteInfo = data.proposals[0]?.votes.filter((vote: { voter: { id: string; }; }) => vote.voter.id == nounOwnerAddress);
+  var support = "";
+  if (!voteInfo || voteInfo.length == 0) {
+    support = "Absent";
+  } else if (voteInfo[0].support) {
+    support = "For";
+  } else {
+    support = "Against";
+  }
+
+  console.log(voteInfo);
+  if (support == "Absent") {
+    return (<></>);
+  }
+
   return (
     <li key={id} className={classes.bidRow}>
       <div className={classes.proposals}>
       <Container>      
-        <Col>
+        {/* <Col>
           {title}
         </Col>
         <Col>
           <ProposalStatus status={status}></ProposalStatus>
         </Col>
         <Col>
-          👍
+        {support}
+        </Col> */}
+        <Image src={"https://icons.getbootstrap.com/assets/icons/check2-circle.svg"}/>
+        <Col>
+        <strong>Noun 47</strong> voted <strong style={{color: 'green'}}>{support}</strong> proposition <strong><a  style={{color: 'black'}} href="#">{title}</a></strong>
         </Col>
       </Container>
       </div>
@@ -30,29 +64,29 @@ const NounVoteRow: React.FC<{id: number, title: string, status: number}> = props
 
 };
 
-const NounVoteHistory = ({ proposals }: { proposals: Proposal[] }) => {
+const NounVoteHistory = ({ proposals, nounOwnerAddress}: { proposals: Proposal[], nounOwnerAddress: string }) => {
 
 
-  console.log(proposals);
   return (
-    <div className={classes.proposals}>
-      <div>
-        <h3 className={classes.heading}>Recent Activity</h3>
-      </div>
-
+    <div>
       {/* TODO put this into a css class */}
-      <Container style={{
-        fontWeight: 'bold'
-      }}>
-        <Col>
-          Proposal
-        </Col>
-        <Col>
-          Status
-        </Col>
-        <Col>
-          Voted For
-        </Col>
+      <Container>
+        <Row>
+          <h3 className={classes.heading}>Recent Activity</h3>
+        </Row>
+        {/* <Row style={{
+          fontWeight: 'bold'
+        }}>
+          <Col style={{paddingLeft: 0}}>
+            Proposal
+          </Col>
+          <Col>
+            Status
+          </Col>
+          <Col>
+            Voted
+          </Col>
+        </Row> */}
       </Container>
 
 
@@ -70,7 +104,7 @@ const NounVoteHistory = ({ proposals }: { proposals: Proposal[] }) => {
           .slice(0, 10) // Take first 10 elements of list
           .map((p,i) => {
             return (
-              <NounVoteRow id = {i} title={p.title} status={p.status}/>
+              <NounVoteRow id = {i} title={p.title} status={p.status} nounOwnerAddress={nounOwnerAddress} />
             );
           })
         ): (
