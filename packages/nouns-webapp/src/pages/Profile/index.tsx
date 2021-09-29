@@ -1,4 +1,5 @@
 import { Row, Col , Container} from 'react-bootstrap';
+import NounProfileCard from '../../components/NounProfileCard';
 import Section from '../../layout/Section';
 import { useAllProposals } from '../../wrappers/nounsDao';
 import classes from './Profile.module.css';
@@ -18,7 +19,7 @@ const ProfilePage: React.FC<ProfilePageProps> = props => {
       <Container>
         <Row>
           <Col sm={4}>
-            TODO noun profile card goes here
+            <NounProfileCard nounId={nounId}/>
           </Col>
           <Col sm={8}>
             TODO noun history feed goes here
