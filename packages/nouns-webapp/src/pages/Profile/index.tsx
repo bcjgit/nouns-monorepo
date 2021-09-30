@@ -1,11 +1,9 @@
-import { Row, Col , Container} from 'react-bootstrap';
+import { Row, Col , Container, Button} from 'react-bootstrap';
 import NounProfileCard from '../../components/NounProfileCard';
 import ProfileActivityFeed from '../../components/ProfileActivityFeed';
 import Section from '../../layout/Section';
-import { useAllProposals } from '../../wrappers/nounsDao';
 import classes from './Profile.module.css';
 
-// TODO make profile without a param redirect to directory page
 interface ProfilePageProps {
   nounId: number;
 }
