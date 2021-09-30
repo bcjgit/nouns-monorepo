@@ -21,7 +21,6 @@ interface NounVoteHistory {
     support: boolean
 }
 
-// TODO something is causing the wrong icons to show here!
 const selectIconForNounVoteActivityRow = (nounVoted: boolean , nounSupported: boolean) => {
     if (!nounVoted) {
         return <FontAwesomeIcon icon={faTimes} color={'gray'}/>;
@@ -94,7 +93,7 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
         );
     }
 
-
+    console.log(data.noun.votes.slice(0));
     const proposalsVotedOn = data.noun.votes.slice(0).map((h: NounVoteHistory, i: number) => h.proposal.id); 
     const supportedProposals = data.noun.votes.slice(0).filter((h: NounVoteHistory, i: number) => h.support).map((h: NounVoteHistory, i: number) => h.proposal.id); 
 
