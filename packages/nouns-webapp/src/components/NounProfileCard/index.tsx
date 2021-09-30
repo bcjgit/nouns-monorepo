@@ -6,21 +6,14 @@ import React from 'react';
 import ShortAddress from '../ShortAddress';
 
 interface NounProfileCardProps {
-    nounId?: number;
+    nounId: number;
+    currentCaretakerAddress: string;
 }
 
 const NounProfileCard: React.FC<NounProfileCardProps> = props => {
-    const { nounId } = props;
+    const { nounId, currentCaretakerAddress} = props;
 
-    if (!nounId) {
-        return (
-            <div>
-                No noun id provided
-            </div>
-        );
-    }
-
-    // TODO replace this with gql class and or useDapp
+    // TODO (brianj) replace with fitlered call to ETH logs to get mint block timestamp => always show in GTM
     const nounStartDate = new Date('August 8, 2021');
 
     const nounBirthday = nounStartDate.setDate(nounStartDate.getDate() + nounId);
@@ -39,9 +32,9 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
             <p style={{fontWeight: 'bold'}}>Current Caretaker:</p>
             </Row>
             <Row>
-            {/* <h2 className={classes.subHeading}>
-                <ShortAddress address={nounOwnerAddress} />
-            </h2> */}
+            <h2 className={classes.subHeading}>
+                <ShortAddress address={currentCaretakerAddress} />
+            </h2>
             </Row>
         </div>
     )
