@@ -56,7 +56,11 @@ function App() {
           <Route exact path="/create-proposal" component={CreateProposalPage} />
           <Route exact path="/vote" component={GovernancePage} />
           <Route exact path="/vote/:id" component={VotePage} />
-          <Route exact path="/profile/:id" render={props => <ProfilePage nounId={Number(props.match.params.id)}/>} />
+          <Route
+            exact
+            path="/profile/:id"
+            render={props => <ProfilePage nounId={Number(props.match.params.id)} />}
+          />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />

@@ -1,4 +1,4 @@
-import { Row, Col , Container, Button} from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import NounProfileCard from '../../components/NounProfileCard';
 import ProfileActivityFeed from '../../components/ProfileActivityFeed';
 import Section from '../../layout/Section';
@@ -9,7 +9,7 @@ interface ProfilePageProps {
 }
 
 const ProfilePage: React.FC<ProfilePageProps> = props => {
-  const { nounId } = props
+  const { nounId } = props;
 
   return (
     <Section bgColor={classes.whiteBg} fullWidth={false}>
@@ -19,7 +19,7 @@ const ProfilePage: React.FC<ProfilePageProps> = props => {
             <NounProfileCard nounId={nounId} />
           </Col>
           <Col sm={8}>
-            <ProfileActivityFeed nounId={nounId}/>
+            <ProfileActivityFeed nounId={nounId} />
           </Col>
         </Row>
       </Container>
