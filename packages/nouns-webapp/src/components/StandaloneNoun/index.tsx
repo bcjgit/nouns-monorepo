@@ -41,11 +41,17 @@ export const StandaloneNounWithSeed: React.FC<StandaloneNounWithSeedProps> = (
 export const StandaloneNounCircleImg: React.FC<StandaloneNounCircleImgProps> = (
   props: StandaloneNounCircleImgProps,
 ) => {
-  const {nounId } = props;
+  const { nounId } = props;
 
   const noun = useNounToken(nounId);
 
-  return <NounCircleImg imgPath={noun ? noun.image : ''} alt={noun ? noun.description : 'Noun'} isSmall={false}/>;
-}
+  return (
+    <NounCircleImg
+      imgPath={noun ? noun.image : ''}
+      alt={noun ? noun.description : 'Noun'}
+      isSmall={false}
+    />
+  );
+};
 
 export default StandaloneNoun;
