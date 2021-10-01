@@ -1,6 +1,10 @@
 import { useQuery } from '@apollo/client';
 import React from 'react'
+<<<<<<< Updated upstream
 import { Button, Col, Container, Row } from 'react-bootstrap';
+=======
+import { Row } from 'react-bootstrap';
+>>>>>>> Stashed changes
 import { Proposal, useAllProposals } from '../../wrappers/nounsDao';
 import { nounVotingHistoryQuery } from '../../wrappers/subgraph';
 import classes from './ProfileActivityFeed.module.css';
