@@ -11,6 +11,9 @@ const NounProfileCardBirthday: React.FC<NounProfileCardBirthdayProps> = props =>
   const { nounId } = props;
 
   const { loading, error, data } = useQuery(auctionQuery(nounId));
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
   if (loading) {
     return <></>;
@@ -18,14 +21,11 @@ const NounProfileCardBirthday: React.FC<NounProfileCardBirthdayProps> = props =>
     return <div>Failed to fetch noun auction info</div>;
   }
 
+  const birthday = new Date(data.auction.startTime * 1000);
   return (
-    <h2 className={classes.birthday}>
-      {new Date(data.auction.startTime * 1000).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}
-    </h2>
+        <h2 className={classes.birthday}>
+            {monthNames[birthday.getUTCMonth()]} {birthday.getUTCDate()}, {birthday.getUTCFullYear()}
+        </h2>
   );
 };
 
