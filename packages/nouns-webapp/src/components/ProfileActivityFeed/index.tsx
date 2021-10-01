@@ -93,7 +93,6 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
         );
     }
 
-    console.log(data.noun.votes.slice(0));
     const proposalsVotedOn = data.noun.votes.slice(0).map((h: NounVoteHistory, i: number) => h.proposal.id); 
     const supportedProposals = data.noun.votes.slice(0).filter((h: NounVoteHistory, i: number) => h.support).map((h: NounVoteHistory, i: number) => h.proposal.id); 
 
