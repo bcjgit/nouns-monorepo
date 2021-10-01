@@ -7,6 +7,7 @@ import ShortAddress from '../ShortAddress';
 import { LoadingNoun } from '../Noun';
 import { useQuery } from '@apollo/client';
 import { nounQuery } from '../../wrappers/subgraph';
+import NounProfileCardBirthday from '../NounProfileCardBirthday';
 
 interface NounProfileCardProps {
     nounId: number;
@@ -27,11 +28,6 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
         )
     }
     
-
-    // TODO (brianj) replace with fitlered call to ETH logs to get mint block timestamp => always show in GTM
-    const nounStartDate = new Date('August 8, 2021');
-
-    const nounBirthday = nounStartDate.setDate(nounStartDate.getDate() + nounId);
     return (
         <div>
             <Row>
@@ -41,7 +37,7 @@ const NounProfileCard: React.FC<NounProfileCardProps> = props => {
               <h1 className={classes.heading}>Noun {nounId}</h1>
             </Row>
             <Row>
-              <h2 className={classes.birthday}>{new Date(nounBirthday).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'})}</h2>
+                <NounProfileCardBirthday nounId={nounId} />
             </Row>
             <Row>
             <p style={{fontWeight: 'bold'}}>Current Caretaker:</p>
