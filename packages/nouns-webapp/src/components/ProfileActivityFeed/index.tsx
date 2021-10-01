@@ -6,6 +6,7 @@ import classes from './ProfileActivityFeed.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimes, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { Row } from 'react-bootstrap';
 
 interface ProfileActivityFeedProps {
     nounId: number;
