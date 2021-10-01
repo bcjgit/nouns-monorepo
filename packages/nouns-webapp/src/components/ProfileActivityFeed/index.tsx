@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import React from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Proposal, useAllProposals } from '../../wrappers/nounsDao';
 import { nounVotingHistoryQuery } from '../../wrappers/subgraph';
 import classes from './ProfileActivityFeed.module.css';
