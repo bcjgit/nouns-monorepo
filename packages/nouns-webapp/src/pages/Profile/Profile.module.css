@@ -1,0 +1,43 @@
+.greyBg {
+    background-color: #d5d7e1;
+ }
+
+ .beigeBg {
+    background-color: #e1d7d5;
+}
+
+.nounWrapper {
+    align-self: flex-end;
+    width: 100%;
+}
+
+.nounContentCol {
+    display: flex;
+}
+
+.wrapper h2 {
+    font-family: 'Londrina Solid';
+    font-size: 56px;
+    margin-bottom: 18px;
+}
+
+
+.wrapper h3 {
+    font-family: 'Londrina Solid';
+    font-size: 24px;
+    color: #79809C;
+}
+
+.wrapper {
+    padding-top: 10rem;
+    display: inline-block;
+    padding-left: 0rem;
+}
+
+.nounInfoPadding {
+    padding-bottom: 1rem;
+    font-family: 'PT Root UI Medium';
+    font-style: normal;
+    font-feature-settings: 'tnum' on, 'lnum' on, 'ss01' on, 'liga' off;
+    font-size: 18px;
+}
