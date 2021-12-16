@@ -17,3 +17,31 @@
   font-size: 32px;
   color: var(--brand-cool-dark-text);
 }
+
+.wrapper {
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+
+@media (max-width: 992px) {
+  .section h4 {
+    font-size: 18px;
+  }
+
+  .section h2 {
+    font-size: 23px;
+  }
+
+  .section {
+    justify-content: space-between;
+  }
+
+  .wrapper {
+    padding-left: .5rem;
+    padding-right: 2rem;
+  }
+
+  .leftCol {
+    padding-left: .2rem;
+  }
+}

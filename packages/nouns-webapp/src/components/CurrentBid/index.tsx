@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js';
 import classes from './CurrentBid.module.css';
 import TruncatedAmount from '../TruncatedAmount';
+import { Row, Container, Col } from 'react-bootstrap';
 
 /**
  * Passible to CurrentBid as `currentBid` prop to indicate that
@@ -19,13 +20,19 @@ const CurrentBid: React.FC<{ currentBid: BigNumber | BidNa; auctionEnded: boolea
   const titleContent = auctionEnded ? 'Winning bid' : 'Current bid';
 
   return (
-    <div className={classes.section}>
-      <h4>{titleContent}</h4>
-      <h2>
-        {currentBid === BID_N_A ? BID_N_A : <TruncatedAmount amount={currentBid && currentBid} />}
-      </h2>
-    </div>
-  );
+    <Container className={classes.wrapper}>
+      <Row className={classes.section}>
+        <Col xs={8} lg={12} className={classes.leftCol}>
+          <h4>{titleContent}</h4>
+        </Col>
+        <Col xs='auto' lg={12}>
+          <h2>
+           {currentBid === BID_N_A ? BID_N_A : <TruncatedAmount amount={currentBid && currentBid} />}
+          </h2>
+        </Col>
+      </Row>
+    </Container>
+  )
 };
 
 export default CurrentBid;
