@@ -3,6 +3,7 @@ import duration from 'dayjs/plugin/duration';
 import { Auction } from '../../wrappers/nounsAuction';
 import classes from './AuctionTimer.module.css';
 import { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 dayjs.extend(duration);
 
@@ -13,12 +14,10 @@ const AuctionTimer: React.FC<{
   const { auction, auctionEnded } = props;
 
   const [auctionTimer, setAuctionTimer] = useState(0);
-  const [timerToggle, setTimerToggle] = useState(true);
   const auctionTimerRef = useRef(auctionTimer); // to access within setTimeout
   auctionTimerRef.current = auctionTimer;
 
   const timerDuration = dayjs.duration(auctionTimerRef.current, 's');
-  const endTime = dayjs().add(auctionTimerRef.current, 's').local();
 
   // timer logic
   useEffect(() => {
@@ -39,11 +38,13 @@ const AuctionTimer: React.FC<{
     }
   }, [auction, auctionTimer]);
 
-  const auctionContent = auctionEnded
+  const auctionContentLong = auctionEnded
     ? 'Auction ended'
-    : timerToggle
-    ? 'Auction ends in'
-    : `Auction ends on ${endTime.format('MMM Do')} at`;
+    : 'Auction ends in'
+
+  const auctionContentShort  = auctionEnded
+  ? 'Auction ended'
+  : 'Time left';
 
   const flooredMinutes = Math.floor(timerDuration.minutes());
   const flooredSeconds = Math.floor(timerDuration.seconds());
@@ -51,36 +52,36 @@ const AuctionTimer: React.FC<{
   if (!auction) return null;
 
   return (
-    <div onClick={() => setTimerToggle(!timerToggle)} className={classes.auctionTimerSection}>
-      <h4 className={classes.title}>{auctionContent}</h4>
-      {timerToggle ? (
-        <h2 className={classes.timerWrapper}>
-          <div className={classes.timerSection}>
-            <span>
-              {`${Math.floor(timerDuration.hours())}`}
-              <span className={classes.small}>h</span>
-            </span>
-          </div>
-          <div className={classes.timerSection}>
-            <span>
-              {`${flooredMinutes}`}
-              <span className={classes.small}>m</span>
-            </span>
-          </div>
-          <div className={classes.timerSection}>
-            <span>
-              {`${flooredSeconds}`}
-              <span className={classes.small}>s</span>
-            </span>
-          </div>
-        </h2>
-      ) : (
-        <h2 className={classes.timerWrapper}>
-          <div className={classes.clockSection}>
-            <span>{endTime.format('h:mm:ss a')}</span>
-          </div>
-        </h2>
-      )}
+    <div className={classes.auctionTimerSection}>
+      <Container className={classes.wrapper}>
+        <Row className={classes.section}>
+          <Col xs={4} lg={12} className={classes.leftCol}>
+            <h4 className={classes.title}>{window.innerWidth < 992 ? auctionContentShort : auctionContentLong}</h4>
+          </Col>
+          <Col xs='auto' lg={12}>
+              <h2 className={classes.timerWrapper}>
+                <div className={classes.timerSection}>
+                  <span>
+                    {`${Math.floor(timerDuration.hours())}`}
+                    <span className={classes.small}>h</span>
+                  </span>
+                </div>
+                <div className={classes.timerSection}>
+                  <span>
+                    {`${flooredMinutes}`}
+                    <span className={classes.small}>m</span>
+                  </span>
+                </div>
+                <div className={classes.timerSectionFinal}>
+                  <span>
+                    {`${flooredSeconds}`}
+                    <span className={classes.small}>s</span>
+                  </span>
+                </div>
+              </h2>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
