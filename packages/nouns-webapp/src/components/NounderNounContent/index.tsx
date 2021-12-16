@@ -11,6 +11,7 @@ import auctionBidClasses from '../AuctionActivity/BidHistory.module.css';
 import bidBtnClasses from '../BidHistoryBtn//BidHistoryBtn.module.css';
 import auctionActivityClasses from '../AuctionActivity/AuctionActivity.module.css';
 import CurrentBid, { BID_N_A } from '../CurrentBid';
+import Winner from '../Winner';
 
 const NounderNounContent: React.FC<{
   mintTimestamp: BigNumber;
@@ -55,8 +56,7 @@ const NounderNounContent: React.FC<{
             className={`${auctionActivityClasses.currentBidCol} ${nounContentClasses.currentBidCol} ${auctionActivityClasses.auctionTimerCol}`}
           >
             <div className={auctionActivityClasses.section}>
-              <h4>Winner</h4>
-              <h2>nounders.eth</h2>
+              <Winner winner={""} isNounders={true} />
             </div>
           </Col>
         </Row>
