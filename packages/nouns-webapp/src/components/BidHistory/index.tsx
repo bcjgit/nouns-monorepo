@@ -18,6 +18,7 @@ const bidItem = (bid: Bid, index: number, classes: any) => {
   ).format('hh:mm a')}`;
 
   const txLink = buildEtherscanTxLink(bid.transactionHash);
+  const isMobile = window.innerWidth < 992;
 
   return (
     <li key={index} className={classes.bidRow}>
@@ -25,7 +26,7 @@ const bidItem = (bid: Bid, index: number, classes: any) => {
         <div className={classes.leftSectionWrapper}>
           <div className={classes.bidder}>
             <div>
-              <ShortAddress address={bid.sender} avatar={true} />
+              <ShortAddress address={bid.sender} avatar={isMobile ? false : true} />
             </div>
           </div>
           <div className={classes.bidDate}>{date}</div>
