@@ -47,12 +47,12 @@ const NounderNounContent: React.FC<{
           </AuctionTitleAndNavWrapper>
         </Row>
         <Row className={auctionActivityClasses.activityRow}>
-          <Col lg={5} className={auctionActivityClasses.currentBidCol}>
+          <Col lg={4} className={auctionActivityClasses.currentBidCol}>
             <CurrentBid currentBid={BID_N_A} auctionEnded={true} />
           </Col>
           <Col
             lg={5}
-            className={`${auctionActivityClasses.currentBidCol} ${nounContentClasses.currentBidCol}`}
+            className={`${auctionActivityClasses.currentBidCol} ${nounContentClasses.currentBidCol} ${auctionActivityClasses.auctionTimerCol}`}
           >
             <div className={auctionActivityClasses.section}>
               <h4>Winner</h4>
