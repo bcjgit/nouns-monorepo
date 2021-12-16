@@ -57,8 +57,7 @@ h4 {
 }
 
 .section h2 {
-  font-family: 'PT Root UI Bold';
-  font-weight: bold;
+  font-family: 'PT Root UI';
   font-size: 32px;
   color: var(--brand-cool-dark-text);
 }
