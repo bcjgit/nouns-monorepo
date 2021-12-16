@@ -14,3 +14,10 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.section h4 {
+  font-family: 'PT Root UI Bold';
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--brand-cool-light-text);
+}

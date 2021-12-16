@@ -42,8 +42,8 @@ const AuctionTimer: React.FC<{
   const auctionContent = auctionEnded
     ? 'Auction ended'
     : timerToggle
-    ? 'Ends in'
-    : `Ends on ${endTime.format('MMM Do')} at`;
+    ? 'Auction ends in'
+    : `Auction ends on ${endTime.format('MMM Do')} at`;
 
   const flooredMinutes = Math.floor(timerDuration.minutes());
   const flooredSeconds = Math.floor(timerDuration.seconds());
