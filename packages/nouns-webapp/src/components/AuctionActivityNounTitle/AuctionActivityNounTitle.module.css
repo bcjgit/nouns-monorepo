@@ -26,3 +26,9 @@
   font-family: 'Londrina Solid';
   font-size: 72pt;
 }
+
+@media (max-width: 992px) {
+  .wrapper h1 {
+    font-size: 56px;
+  }
+}
