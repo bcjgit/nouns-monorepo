@@ -33,10 +33,14 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
 
   const MAX_EVENTS_SHOW_ABOVE_FOLD = 5;
 
-  const [truncateProposals, setTruncateProposals ] = useState(true);
+  const [truncateProposals, setTruncateProposals] = useState(true);
 
   const { loading, error, data } = useQuery(nounVotingHistoryQuery(nounId));
-  const { loading: proposalTimestampLoading, error: proposalTimestampError, data: proposalCreatedTimestamps } = useQuery(createTimestampAllProposals());
+  const {
+    loading: proposalTimestampLoading,
+    error: proposalTimestampError,
+    data: proposalCreatedTimestamps,
+  } = useQuery(createTimestampAllProposals());
 
   const nounCanVoteTimestamp = useNounCanVoteTimestamp(nounId);
 
@@ -56,12 +60,14 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
       return acc;
     }, {});
 
-  const filteredProposals = proposals.filter(
-    (p: Proposal, id: number) => {
-      // console.log("INNER: ", p.id, parseInt(proposalCreatedTimestamps.proposals[id].createdTimestamp), nounCanVoteTimestamp.toNumber());
-      return parseInt(proposalCreatedTimestamps.proposals[id].createdTimestamp) > nounCanVoteTimestamp.toNumber() || ( p.id && nounVotes[p.id])
-    }
-  );
+  const filteredProposals = proposals.filter((p: Proposal, id: number) => {
+    // console.log("INNER: ", p.id, parseInt(proposalCreatedTimestamps.proposals[id].createdTimestamp), nounCanVoteTimestamp.toNumber());
+    return (
+      parseInt(proposalCreatedTimestamps.proposals[id].createdTimestamp) >
+        nounCanVoteTimestamp.toNumber() ||
+      (p.id && nounVotes[p.id])
+    );
+  });
 
   return (
     <Section fullWidth={false}>
@@ -69,10 +75,9 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
         <div className={classes.headerWrapper}>
           <h1>Activity</h1>
         </div>
-        {
-          filteredProposals && filteredProposals.length ? (
-            <>
-              <Table responsive hover className={classes.aboveTheFoldEventsTable}>
+        {filteredProposals && filteredProposals.length ? (
+          <>
+            <Table responsive hover className={classes.aboveTheFoldEventsTable}>
               <tbody className={classes.nounInfoPadding}>
                 {filteredProposals?.length ? (
                   filteredProposals
@@ -81,13 +86,7 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
                     .slice(0, MAX_EVENTS_SHOW_ABOVE_FOLD)
                     .map((p: Proposal, i: number) => {
                       const vote = p.id ? nounVotes[p.id] : undefined;
-                      return (
-                        <NounProfileVoteRow
-                          proposal={p}
-                          vote={vote}
-                          key={i}
-                        />
-                      );
+                      return <NounProfileVoteRow proposal={p} vote={vote} key={i} />;
                     })
                 ) : (
                   <LoadingNoun />
@@ -105,13 +104,7 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
                         .slice(MAX_EVENTS_SHOW_ABOVE_FOLD, filteredProposals.length)
                         .map((p: Proposal, i: number) => {
                           const vote = p.id ? nounVotes[p.id] : undefined;
-                          return (
-                            <NounProfileVoteRow
-                              proposal={p}
-                              vote={vote}
-                              key={i}
-                            />
-                          );
+                          return <NounProfileVoteRow proposal={p} vote={vote} key={i} />;
                         })
                     ) : (
                       <LoadingNoun />
@@ -120,30 +113,35 @@ const ProfileActivityFeed: React.FC<ProfileActivityFeedProps> = props => {
                 </Table>
               </div>
             </Collapse>
-            
-            {
-              filteredProposals.length <= MAX_EVENTS_SHOW_ABOVE_FOLD ? (<></>) : (
-                <>
-                  {truncateProposals ? (
-                    <div className={classes.expandCollapseCopy} onClick={() => setTruncateProposals(false)}>
-                      Show all {filteredProposals.length} events <FontAwesomeIcon icon={faChevronDown} />
-                    </div>
-                  ) : (
-                    <div className={classes.expandCollapseCopy} onClick={() => setTruncateProposals(true)}>
-                      Show fewer <FontAwesomeIcon icon={faChevronUp} />
-                    </div>
-                  )
-                }
+
+            {filteredProposals.length <= MAX_EVENTS_SHOW_ABOVE_FOLD ? (
+              <></>
+            ) : (
+              <>
+                {truncateProposals ? (
+                  <div
+                    className={classes.expandCollapseCopy}
+                    onClick={() => setTruncateProposals(false)}
+                  >
+                    Show all {filteredProposals.length} events{' '}
+                    <FontAwesomeIcon icon={faChevronDown} />
+                  </div>
+                ) : (
+                  <div
+                    className={classes.expandCollapseCopy}
+                    onClick={() => setTruncateProposals(true)}
+                  >
+                    Show fewer <FontAwesomeIcon icon={faChevronUp} />
+                  </div>
+                )}
               </>
-              )
-            }
+            )}
           </>
-           ) : (
-            <div className={classes.nullStateCopy}>
-              This Noun has no activity yet. Check back soon!
-            </div>
-          )
-        }
+        ) : (
+          <div className={classes.nullStateCopy}>
+            This Noun has no activity yet. Check back soon!
+          </div>
+        )}
       </Col>
     </Section>
   );

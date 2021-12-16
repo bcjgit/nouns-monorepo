@@ -56,7 +56,7 @@ const NounderNounContent: React.FC<{
             className={`${auctionActivityClasses.currentBidCol} ${nounContentClasses.currentBidCol} ${auctionActivityClasses.auctionTimerCol}`}
           >
             <div className={auctionActivityClasses.section}>
-              <Winner winner={""} isNounders={true} />
+              <Winner winner={''} isNounders={true} />
             </div>
           </Col>
         </Row>

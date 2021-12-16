@@ -60,9 +60,7 @@
     border-radius: 10px;
   }
 
-  .bidAmount
-  .linkSymbol
-  .bidder {
+  .bidAmount .linkSymbol .bidder {
     font-size: 16px;
   }
 }

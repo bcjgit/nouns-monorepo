@@ -24,7 +24,6 @@
   margin-right: 0.5rem;
 }
 
-
 .timerSectionFinal span {
   font-family: 'PT Root UI Bold';
   font-weight: bold;
@@ -69,7 +68,7 @@
   }
 
   .wrapper {
-    padding-left: .5rem;
+    padding-left: 0.5rem;
     padding-right: 2rem;
   }
 
@@ -80,5 +79,4 @@
   .timerSectionFinal {
     margin-right: 0rem !important;
   }
-  
 }

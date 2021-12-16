@@ -54,7 +54,6 @@ export const useAuctionMinBidIncPercentage = () => {
 
 // Nouns can vote when the auction for the next noun starts
 export const useNounCanVoteTimestamp = (nounId: number) => {
-
   const nextNounId = nounId + 1;
 
   const nextNounIdForQuery = isNounderNoun(EthersBN.from(nextNounId)) ? nextNounId + 1 : nextNounId;

@@ -120,8 +120,8 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
                   onPrevAuctionClick={onPrevAuctionClick}
                 />
               )}
-              </AuctionTitleAndNavWrapper>
-              <AuctionActivityDateHeadline startTime={auction.startTime} />
+            </AuctionTitleAndNavWrapper>
+            <AuctionActivityDateHeadline startTime={auction.startTime} />
             <Col lg={12}>
               <AuctionActivityNounTitle nounId={auction.nounId} />
             </Col>
@@ -151,16 +151,24 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
         )}
         <Row className={classes.activityRow}>
           <Col lg={12}>
-            {!isLastAuction ? (<NounInfoCard nounId={auction.nounId.toNumber()} bidHistoryOnClickHandler={showBidModalHandler}/>) : (displayGraphDepComps && (
-              <BidHistory
-                auctionId={auction.nounId.toString()}
-                max={3}
-                classes={bidHistoryClasses}
+            {!isLastAuction ? (
+              <NounInfoCard
+                nounId={auction.nounId.toNumber()}
+                bidHistoryOnClickHandler={showBidModalHandler}
               />
-            ))}
+            ) : (
+              displayGraphDepComps && (
+                <BidHistory
+                  auctionId={auction.nounId.toString()}
+                  max={3}
+                  classes={bidHistoryClasses}
+                />
+              )
+            )}
             {/* If no bids, show nothing. If bids avail:graph is stable? show bid history modal,
             else show etherscan contract link */}
-            {isLastAuction && !auction.amount.eq(0) &&
+            {isLastAuction &&
+              !auction.amount.eq(0) &&
               (displayGraphDepComps ? (
                 <BidHistoryBtn onClick={showBidModalHandler} />
               ) : (

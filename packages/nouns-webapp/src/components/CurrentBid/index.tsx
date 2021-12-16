@@ -25,14 +25,18 @@ const CurrentBid: React.FC<{ currentBid: BigNumber | BidNa; auctionEnded: boolea
         <Col xs={5} lg={12} className={classes.leftCol}>
           <h4>{titleContent}</h4>
         </Col>
-        <Col xs='auto' lg={12}>
+        <Col xs="auto" lg={12}>
           <h2>
-           {currentBid === BID_N_A ? BID_N_A : <TruncatedAmount amount={currentBid && currentBid} />}
+            {currentBid === BID_N_A ? (
+              BID_N_A
+            ) : (
+              <TruncatedAmount amount={currentBid && currentBid} />
+            )}
           </h2>
         </Col>
       </Row>
     </Container>
-  )
+  );
 };
 
 export default CurrentBid;

@@ -36,11 +36,11 @@
   }
 
   .wrapper {
-    padding-left: .5rem;
+    padding-left: 0.5rem;
     padding-right: 2rem;
   }
 
   .leftCol {
-    padding-left: .2rem;
+    padding-left: 0.2rem;
   }
 }
