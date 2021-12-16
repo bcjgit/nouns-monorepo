@@ -10,6 +10,13 @@
   display: flex;
 }
 
+.timerSection span {
+  font-family: 'PT Root UI Bold';
+  font-weight: bold;
+  font-size: 32px;
+  color: var(--brand-cool-dark-text);
+}
+
 .timerSection {
   margin-right: 0.5rem;
 }

@@ -21,3 +21,10 @@
   line-height: 27px;
   color: var(--brand-cool-light-text);
 }
+
+.section h2 {
+  font-family: 'PT Root UI Bold';
+  font-weight: bold;
+  font-size: 32px;
+  color: var(--brand-cool-dark-text);
+}
