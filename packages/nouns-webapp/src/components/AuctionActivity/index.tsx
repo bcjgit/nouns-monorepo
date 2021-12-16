@@ -19,6 +19,7 @@ import BidHistoryBtn from '../BidHistoryBtn';
 import StandaloneNoun from '../StandaloneNoun';
 import config from '../../config';
 import { buildEtherscanAddressLink } from '../../utils/etherscan';
+import NounInfoCard from '../../components/NounInfoCard';
 
 const openEtherscanBidHistory = () => {
   const url = buildEtherscanAddressLink(config.addresses.nounsAuctionHouseProxy);
@@ -150,16 +151,16 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
         )}
         <Row className={classes.activityRow}>
           <Col lg={12}>
-            {displayGraphDepComps && (
+            {!isLastAuction ? (<NounInfoCard nounId={auction.nounId.toNumber()} />) : (displayGraphDepComps && (
               <BidHistory
                 auctionId={auction.nounId.toString()}
                 max={3}
                 classes={bidHistoryClasses}
               />
-            )}
+            ))}
             {/* If no bids, show nothing. If bids avail:graph is stable? show bid history modal,
             else show etherscan contract link */}
-            {!auction.amount.eq(0) &&
+            {isLastAuction && !auction.amount.eq(0) &&
               (displayGraphDepComps ? (
                 <BidHistoryBtn onClick={showBidModalHandler} />
               ) : (
