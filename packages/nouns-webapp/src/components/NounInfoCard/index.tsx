@@ -19,15 +19,16 @@ import { useDispatch } from 'react-redux';
 
 interface NounInfoCardProps {
   nounId: number;
+  bidHistoryOnClickHandler?: () => void;
 }
 
 const NounInfoCard: React.FC<NounInfoCardProps> = props => {
-  const { nounId } = props;
+  const { nounId , bidHistoryOnClickHandler } = props;
   const history = useHistory();
   const dispatch = useDispatch();
 
   const etherscanBaseURL = buildEtherscanAddressLink(config.addresses.nounsToken);
-  const bidHistoryButtonClickHandler = () => {
+  const bidHistoryButtonClickHandler = bidHistoryOnClickHandler ? bidHistoryOnClickHandler : () => {
     dispatch(setOnDisplayAuctionNounId(nounId));
     history.push(`/auction/${nounId}`);
   };

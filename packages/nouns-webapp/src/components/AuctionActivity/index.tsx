@@ -151,7 +151,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
         )}
         <Row className={classes.activityRow}>
           <Col lg={12}>
-            {!isLastAuction ? (<NounInfoCard nounId={auction.nounId.toNumber()} />) : (displayGraphDepComps && (
+            {!isLastAuction ? (<NounInfoCard nounId={auction.nounId.toNumber()} bidHistoryOnClickHandler={showBidModalHandler}/>) : (displayGraphDepComps && (
               <BidHistory
                 auctionId={auction.nounId.toString()}
                 max={3}
