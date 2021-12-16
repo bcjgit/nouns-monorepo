@@ -226,14 +226,16 @@ const Bid: React.FC<{
   const isDisabled =
     placeBidState.status === 'Mining' || settleAuctionState.status === 'Mining' || !activeAccount;
 
+  const isMobile = window.innerWidth < 992;
+
+  const minBidCopy = isMobile ? `> ${minBidEth(minBid)}`  :  `${minBidEth(minBid)} or more`; 
+
   return (
     <>
-      {!auctionEnded && (
-        <p className={classes.minBidCopy}>{`Minimum bid: ${minBidEth(minBid)} ETH`}</p>
-      )}
       <InputGroup>
         {!auctionEnded && (
           <>
+            <span className={classes.customPlaceholderBidAmt}>{!auctionEnded ? minBidCopy : ''}</span>
             <FormControl
               aria-label="Example text with button addon"
               aria-describedby="basic-addon1"

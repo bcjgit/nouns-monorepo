@@ -31,8 +31,7 @@
   width: 60%;
   height: 3rem;
   color: black;
-  border: 1px solid #aaa !important;
-  border-radius: 0.25rem !important;
+  border-radius: 12px !important;
   background-color: white;
   font-weight: bold;
   outline: none !important;
@@ -46,10 +45,22 @@
   position: absolute;
   top: 25%;
   left: 46%;
-  font-weight: bold;
-  color: #aaa;
+  color: var(--brand-cool-light-text);
+  font-family: 'PT Root UI Bold';
   z-index: 3;
 }
+
+.customPlaceholderBidAmt {
+  position: absolute;
+  opacity: 30%;
+  top: 15%;
+  left: 3%;
+  color: var(--brand-cool-light-text);
+  font-family: 'PT Root UI Bold';
+  font-size: 25px;
+  z-index: 3;
+}
+
 .bidBtnAuctionEnded {
   width: 100%;
   height: 3rem;
@@ -94,6 +105,11 @@
     border-color: #c3c3c3;
   }
   .customPlaceholder {
-    left: 44%;
+    left: 40%;
+  }
+
+  .customPlaceholderBidAmt {
+    left: 5%;
+    top: 12%;
   }
 }
