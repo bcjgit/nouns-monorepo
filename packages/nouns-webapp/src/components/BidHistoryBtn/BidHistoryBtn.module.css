@@ -1,15 +1,23 @@
 .bidHistoryWrapper {
   display: flex;
+  background-color: var(--brand-cool-accent);
+  border-radius: 10px;
+  justify-content: center;
+  cursor: pointer;
 }
 .bidHistory {
   margin-left: 0.5rem;
-  color: var(--brand-black);
-  font-weight: normal;
+  color: var(--brand-cool-dark-text);
+  font-family: 'PT Root UI Bold';
   font-size: 1rem;
-  cursor: pointer;
+  font-size: 16px;
+  padding: 0.5rem 1rem;
 }
 
 .bidHistory:hover {
-  color: var(--brand-dark-red);
   text-decoration: none;
+}
+
+.bidHistoryWrapper:hover {
+  background-color: var(--brand-gray-hover);
 }
