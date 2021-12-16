@@ -10,7 +10,11 @@ const AuctionActivityDateHeadline: React.FC<{ startTime: BigNumber }> = props =>
   const auctionStartTimeUTC = dayjs(startTime.toNumber() * 1000)
     .utc()
     .format('MMM DD YYYY');
-  return <h4 className={classes.date}>{`${auctionStartTimeUTC}`}</h4>;
+  return (
+    <div className={classes.wrapper}>
+      <h4 className={classes.date}>{`${auctionStartTimeUTC}`}</h4>
+    </div>
+  );
 };
 
 export default AuctionActivityDateHeadline;

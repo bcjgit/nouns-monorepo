@@ -1,11 +1,8 @@
 .navArrowsContainer {
   position: absolute;
-  margin-top: 0.3rem;
-  margin-left: 12.35rem;
 }
 
 .leftArrow {
-  margin-left: 1rem;
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -20,8 +17,7 @@
   font-weight: bold;
 }
 .rightArrow {
-  margin-left: 1rem;
-  margin-left: 0.6rem;
+  margin-left: 0.3rem;
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -34,21 +30,22 @@
   border-radius: 50%;
   font-weight: bold;
 }
-.leftArrow:hover,
-.rightArrow:hover {
-  opacity: 0.9;
-  background-color: var(--brand-gray-hover);
+
+/* Disable hover on mobile because it was leading to
+buttons looking disabled when they were not */
+@media (min-width: 992px) {
+  .leftArrow:hover,
+  .rightArrow:hover {
+    opacity: 0.9;
+    background-color: var(--brand-gray-hover);
+  }
 }
+
 .leftArrow:disabled,
 .rightArrow:disabled {
   opacity: 0.5;
 }
 
-@media (max-width: 992px) {
-  .leftArrow {
-    margin-left: 1rem;
-  }
-}
 @-moz-document url-prefix() {
   .navArrowsContainer {
     margin-top: 0;

@@ -111,11 +111,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
       <AuctionActivityWrapper>
         <div className={classes.informationRow}>
           <Row className={classes.activityRow}>
-            <Col lg={12}>
-              <AuctionActivityDateHeadline startTime={auction.startTime} />
-            </Col>
             <AuctionTitleAndNavWrapper>
-              <AuctionActivityNounTitle nounId={auction.nounId} />
               {displayGraphDepComps && (
                 <AuctionNavigation
                   isFirstAuction={isFirstAuction}
@@ -124,7 +120,11 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
                   onPrevAuctionClick={onPrevAuctionClick}
                 />
               )}
-            </AuctionTitleAndNavWrapper>
+              </AuctionTitleAndNavWrapper>
+              <AuctionActivityDateHeadline startTime={auction.startTime} />
+            <Col lg={12}>
+              <AuctionActivityNounTitle nounId={auction.nounId} />
+            </Col>
           </Row>
           <Row className={classes.activityRow}>
             <Col lg={4} className={classes.currentBidCol}>

@@ -2,5 +2,10 @@
     font-family: 'PT Root UI Bold';
     font-size: 18px;
     line-height: 27px;
-    color: var(--brand-cool-light-text)
+    color: var(--brand-cool-light-text);
+    margin-top: 0.22rem;
+}
+
+.wrapper {
+    margin-left: 5rem;
 }
