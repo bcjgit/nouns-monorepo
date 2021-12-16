@@ -13,8 +13,11 @@
   background-color: #6db3f2;
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: transparent;
-  font-size: xx-large;
+  font-size: large;
+  border-radius: 50%;
+  color: var(--brand-cool-dark-text);
+  background-color: var(--brand-cool-accent);
+  font-weight: bold;
 }
 .rightArrow {
   margin-left: 1rem;
@@ -25,12 +28,16 @@
   border: none;
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: transparent;
-  font-size: xx-large;
+  font-size: large;
+  color: var(--brand-cool-dark-text);
+  background-color: var(--brand-cool-accent);
+  border-radius: 50%;
+  font-weight: bold;
 }
 .leftArrow:hover,
 .rightArrow:hover {
   opacity: 0.9;
+  background-color: var(--brand-gray-hover);
 }
 .leftArrow:disabled,
 .rightArrow:disabled {
