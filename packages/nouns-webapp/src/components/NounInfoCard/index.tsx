@@ -30,7 +30,7 @@ const NounInfoCard: React.FC<NounInfoCardProps> = props => {
   const etherscanBaseURL = buildEtherscanAddressLink(config.addresses.nounsToken);
   const bidHistoryButtonClickHandler = bidHistoryOnClickHandler ? bidHistoryOnClickHandler : () => {
     dispatch(setOnDisplayAuctionNounId(nounId));
-    history.push(`/auction/${nounId}`);
+    history.push(`/noun/${nounId}`);
   };
   // eslint-disable-next-line no-restricted-globals
   const etherscanButtonClickHandler = () => (location.href = `${etherscanBaseURL}/${nounId}`);
