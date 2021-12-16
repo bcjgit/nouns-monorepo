@@ -22,7 +22,7 @@ const CurrentBid: React.FC<{ currentBid: BigNumber | BidNa; auctionEnded: boolea
   return (
     <Container className={classes.wrapper}>
       <Row className={classes.section}>
-        <Col xs={8} lg={12} className={classes.leftCol}>
+        <Col xs={5} lg={12} className={classes.leftCol}>
           <h4>{titleContent}</h4>
         </Col>
         <Col xs='auto' lg={12}>
