@@ -172,12 +172,15 @@ export const nounVotingHistoryQuery = (nounId: number) => gql`
 }
 `;
 
-export const highestNounIdMintedAtProposalTime = (proposalStartBlock: number) => gql`
+export const createTimestampAllProposals = () => gql`
 {
-	auctions(orderBy: endTime orderDirection: desc first: 1 block: { number: ${proposalStartBlock} }) {
-		id
-	}
+		proposals(orderBy: createdTimestamp orderDirection: asc first: 1000) {
+			id
+			createdTimestamp
+		}
 }`;
+
+
 
 export const clientFactory = (uri: string) =>
   new ApolloClient({
