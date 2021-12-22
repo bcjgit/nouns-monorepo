@@ -5,16 +5,15 @@
 }
 
 .section h4 {
-  font-family: 'PT Root UI';
+  font-family: 'PT Root UI Bold';
   font-size: 18px;
-  color: var(--brand-cool-light-text);
 }
 
 .section h2 {
   font-family: 'PT Root UI Bold';
-  font-weight: bold;
   font-size: 32px;
-  color: var(--brand-cool-dark-text);
+  margin-bottom: 0px !important;
+  margin-top: 3px;
 }
 
 .wrapper {

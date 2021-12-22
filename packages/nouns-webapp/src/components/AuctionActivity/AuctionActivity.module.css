@@ -1,13 +1,15 @@
 .wrapper {
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   color: var(--brand-black);
   align-self: flex-start !important;
 }
+
 .informationRow {
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 }
+
 .activityRow {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 h1 {
@@ -28,25 +30,33 @@ h4 {
   justify-content: flex-start;
   align-items: center;
 }
+
 .modalTitleWrapper {
   color: var(--brand-black);
 }
+
 .modalTitleWrapper h1 {
   font-size: xx-large;
   margin-left: 2rem;
 }
+
 .modalHeader button {
   align-self: flex-start;
 }
+
 .modalHeaderNounImgWrapper {
   width: 150px;
   height: 150px;
 }
+
 .currentBidCol {
   border-right: 1px solid #79809c49;
+  margin-left: 6px;
+  margin-top: 6px;
 }
+
 .auctionTimerCol {
-  padding-left: 3rem;
+  padding-left: 0.5rem;
 }
 
 .section h4 {
@@ -66,6 +76,7 @@ h4 {
   .wrapper {
     padding: 1rem;
   }
+
   .auctionTimerCol {
     padding-left: 15px;
   }

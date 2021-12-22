@@ -11,6 +11,7 @@ import { useAppDispatch } from '../../hooks';
 import { AlertModal, setAlertModal } from '../../state/slices/application';
 import { NounsAuctionHouseFactory } from '@nouns/sdk';
 import config from '../../config';
+import WalletConnectModal from '../WalletConnectModal';
 
 const computeMinimumNextBid = (
   currentBid: BigNumber,
@@ -57,8 +58,17 @@ const Bid: React.FC<{
   const [bidInput, setBidInput] = useState('');
   const [bidButtonContent, setBidButtonContent] = useState({
     loading: false,
-    content: auctionEnded ? 'Settle' : 'Bid',
+    content: auctionEnded ? 'Settle' : 'Place bid',
   });
+
+  const [showConnectModal, setShowConnectModal] = useState(false);
+
+  const showModalHandler = () => {
+    setShowConnectModal(true);
+  };
+  const hideModalHandler = () => {
+    setShowConnectModal(false);
+  };
 
   const dispatch = useAppDispatch();
   const setModal = useCallback((modal: AlertModal) => dispatch(setAlertModal(modal)), [dispatch]);
@@ -153,7 +163,7 @@ const Bid: React.FC<{
       case 'None':
         setBidButtonContent({
           loading: false,
-          content: 'Bid',
+          content: 'Place bid',
         });
         break;
       case 'Mining':
@@ -226,17 +236,22 @@ const Bid: React.FC<{
   const isDisabled =
     placeBidState.status === 'Mining' || settleAuctionState.status === 'Mining' || !activeAccount;
 
+  const isDisconnected = !activeAccount
+
   const isMobile = window.innerWidth < 992;
 
-  const minBidCopy = isMobile ? `> ${minBidEth(minBid)}` : `${minBidEth(minBid)} or more`;
+  const minBidCopy = isMobile ? `> ${minBidEth(minBid)}` : `Ξ ${minBidEth(minBid)} or more`;
 
   return (
     <>
+    {showConnectModal && activeAccount === undefined && (
+        <WalletConnectModal onDismiss={hideModalHandler} />
+      )}
       <InputGroup>
         {!auctionEnded && (
           <>
             <span className={classes.customPlaceholderBidAmt}>
-              {!auctionEnded ? minBidCopy : ''}
+              {!auctionEnded && !bidInput ? minBidCopy : ''}
             </span>
             <FormControl
               aria-label="Example text with button addon"
@@ -248,16 +263,21 @@ const Bid: React.FC<{
               ref={bidInputRef}
               value={bidInput}
             />
-            <span className={classes.customPlaceholder}>ETH</span>
           </>
         )}
-        <Button
+        {isDisconnected ? <Button
+          className={classes.bidBtn}
+          onClick={showModalHandler}
+        >
+          Connect
+        </Button> : <Button
           className={auctionEnded ? classes.bidBtnAuctionEnded : classes.bidBtn}
           onClick={auctionEnded ? settleAuctionHandler : placeBidHandler}
           disabled={isDisabled}
         >
           {bidButtonContent.loading ? <Spinner animation="border" /> : bidButtonContent.content}
-        </Button>
+        </Button>}
+        
       </InputGroup>
     </>
   );

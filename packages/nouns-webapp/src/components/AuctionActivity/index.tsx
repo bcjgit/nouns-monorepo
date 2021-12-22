@@ -1,25 +1,26 @@
 import { Auction } from '../../wrappers/nounsAuction';
-import { useState, useEffect } from 'react';
-import BigNumber from 'bignumber.js';
-import { Row, Col } from 'react-bootstrap';
-import classes from './AuctionActivity.module.css';
-import bidHistoryClasses from './BidHistory.module.css';
-import Bid from '../Bid';
-import AuctionTimer from '../AuctionTimer';
-import CurrentBid from '../CurrentBid';
-import Winner from '../Winner';
-import BidHistory from '../BidHistory';
-import { Modal } from 'react-bootstrap';
-import AuctionNavigation from '../AuctionNavigation';
-import AuctionActivityWrapper from '../AuctionActivityWrapper';
-import AuctionTitleAndNavWrapper from '../AuctionTitleAndNavWrapper';
-import AuctionActivityNounTitle from '../AuctionActivityNounTitle';
-import AuctionActivityDateHeadline from '../AuctionActivityDateHeadline';
-import BidHistoryBtn from '../BidHistoryBtn';
-import StandaloneNoun from '../StandaloneNoun';
-import config from '../../config';
 import { buildEtherscanAddressLink } from '../../utils/etherscan';
+import { Modal } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { useAppSelector } from '../../hooks';
+import { useState, useEffect } from 'react';
+import AuctionActivityDateHeadline from '../AuctionActivityDateHeadline';
+import AuctionActivityNounTitle from '../AuctionActivityNounTitle';
+import AuctionActivityWrapper from '../AuctionActivityWrapper';
+import AuctionNavigation from '../AuctionNavigation';
+import AuctionTimer from '../AuctionTimer';
+import AuctionTitleAndNavWrapper from '../AuctionTitleAndNavWrapper';
+import Bid from '../Bid';
+import BidHistory from '../BidHistory';
+import BidHistoryBtn from '../BidHistoryBtn';
+import bidHistoryClasses from './BidHistory.module.css';
+import BigNumber from 'bignumber.js';
+import classes from './AuctionActivity.module.css';
+import config from '../../config';
+import CurrentBid from '../CurrentBid';
 import NounInfoCard from '../../components/NounInfoCard';
+import StandaloneNoun from '../StandaloneNoun';
+import Winner from '../Winner';
 
 const openEtherscanBidHistory = () => {
   const url = buildEtherscanAddressLink(config.addresses.nounsAuctionHouseProxy);
@@ -44,6 +45,8 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
     onNextAuctionClick,
     displayGraphDepComps,
   } = props;
+
+  const isCool = useAppSelector(state => state.application.stateBackgroundColor) === '#d5d7e1';
 
   const [auctionEnded, setAuctionEnded] = useState(false);
   const [auctionTimer, setAuctionTimer] = useState(false);
@@ -123,7 +126,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
             </AuctionTitleAndNavWrapper>
             <AuctionActivityDateHeadline startTime={auction.startTime} />
             <Col lg={12}>
-              <AuctionActivityNounTitle nounId={auction.nounId} />
+              <AuctionActivityNounTitle isCool={isCool} nounId={auction.nounId} />
             </Col>
           </Row>
           <Row className={classes.activityRow}>
@@ -133,7 +136,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (props: AuctionActivityP
                 auctionEnded={auctionEnded}
               />
             </Col>
-            <Col lg={5} className={classes.auctionTimerCol}>
+            <Col lg={6} className={classes.auctionTimerCol}>
               {auctionEnded ? (
                 <Winner winner={auction.bidder} />
               ) : (

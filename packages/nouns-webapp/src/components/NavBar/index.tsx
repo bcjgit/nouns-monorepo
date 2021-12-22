@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
 import ShortAddress from '../ShortAddress';
 import classes from './NavBar.module.css';
-import logo from '../../assets/logo.svg';
+import glasses from '../../assets/glasses.svg';
 import { useState } from 'react';
 import { useEtherBalance, useEthers } from '@usedapp/core';
 import WalletConnectModal from '../WalletConnectModal';
@@ -53,7 +53,7 @@ const NavBar = () => {
             setShowConnectModal(false);
           }}
         >
-          DISCONNECT
+          Sign Out
         </Nav.Link>
       </Nav.Item>
     </>
@@ -65,7 +65,7 @@ const NavBar = () => {
         className={clsx(classes.nounsNavLink, classes.connectBtn)}
         onClick={showModalHandler}
       >
-        CONNECT WALLET
+        Connect
       </Nav.Link>
     </>
   );
@@ -84,11 +84,11 @@ const NavBar = () => {
         <Container>
           <Navbar.Brand as={Link} to="/" className={classes.navBarBrand}>
             <img
-              src={logo}
-              width="85"
-              height="85"
+              src={glasses}
+              width="108"
+              height="108"
               className="d-inline-block align-middle"
-              alt="Nouns DAO logo"
+              alt="Nouns logo"
             />
           </Navbar.Brand>
           {Number(CHAIN_ID) !== 1 && (
@@ -107,7 +107,7 @@ const NavBar = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  TREASURY Ξ {Number(utils.formatEther(treasuryBalance)).toFixed(0)}
+                  Treasury <strong style={{letterSpacing: '0.8px'}}>Ξ {Number(utils.formatEther(treasuryBalance)).toFixed(0)}</strong>
                 </Nav.Link>
               )}
             </Nav.Item>
@@ -120,7 +120,7 @@ const NavBar = () => {
               target="_blank"
               rel="noreferrer"
             >
-              DOCS
+              Explore
             </Nav.Link>
             <Nav.Link
               href={externalURL(ExternalURL.discourse)}
@@ -128,10 +128,10 @@ const NavBar = () => {
               target="_blank"
               rel="noreferrer"
             >
-              DISCOURSE
+              Forums
             </Nav.Link>
             <Nav.Link as={Link} to="/playground" className={classes.nounsNavLink}>
-              PLAYGROUND
+              Playground
             </Nav.Link>
             {activeAccount ? connectedContent : disconnectedContent}
           </Navbar.Collapse>

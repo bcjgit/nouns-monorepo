@@ -7,12 +7,16 @@
 }
 
 .auctionActivityCol {
-  padding-top: 2rem;
+  padding-top: 0.5rem;
+  padding-right: 5rem;
+  padding-bottom: 1rem;
+  min-height: 520px;
   align-self: start !important; /* maintains auction arrow buttons fixed from auction to auction  */
 }
 
 @media (max-width: 992px) {
   .auctionActivityCol {
     padding-bottom: 2rem;
+    padding-right: unset;
   }
 }

@@ -81,7 +81,7 @@ const Auction: React.FC<AuctionProps> = props => {
 
   return (
     <div style={{ backgroundColor: stateBgColor }}>
-      <Container fluid="lg">
+      <Container fluid="xl">
         <Row>
           <Col lg={{ span: 6 }} className={classes.nounContentCol}>
             {currentAuction ? nounContent : loadingNoun}

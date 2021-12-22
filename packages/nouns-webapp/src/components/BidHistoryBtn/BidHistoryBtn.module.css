@@ -4,7 +4,9 @@
   border-radius: 10px;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
+
 .bidHistory {
   margin-left: 0.5rem;
   color: var(--brand-cool-dark-text);

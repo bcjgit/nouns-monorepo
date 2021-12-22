@@ -2,8 +2,7 @@ import React from 'react';
 import ShortAddress from '../ShortAddress';
 import _classes from './BidHistory.module.css';
 import dayjs from 'dayjs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import link from '../../assets/icons/Link.svg'
 import { buildEtherscanTxLink } from '../../utils/etherscan';
 import TruncatedAmount from '../TruncatedAmount';
 import BigNumber from 'bignumber.js';
@@ -35,7 +34,7 @@ const bidItem = (bid: Bid, index: number, classes: any) => {
           <div className={classes.bidAmount}>{bidAmount}</div>
           <div className={classes.linkSymbol}>
             <a href={txLink} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faExternalLinkAlt} />
+              <img src={link} width={24} />
             </a>
           </div>
         </div>

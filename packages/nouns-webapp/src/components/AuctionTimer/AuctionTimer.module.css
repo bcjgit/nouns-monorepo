@@ -1,7 +1,6 @@
 .title {
   font-family: 'PT Root UI';
   font-size: 18px;
-  color: var(--brand-cool-light-text);
   margin-bottom: 0;
 }
 
@@ -13,7 +12,6 @@
   font-family: 'PT Root UI Bold';
   font-weight: bold;
   font-size: 32px;
-  color: var(--brand-cool-dark-text);
 }
 
 .timerSection {
@@ -28,7 +26,6 @@
   font-family: 'PT Root UI Bold';
   font-weight: bold;
   font-size: 32px;
-  color: var(--brand-cool-dark-text);
 }
 
 .small {
@@ -47,6 +44,12 @@
 
 .auctionTimerSection {
   cursor: pointer;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.leftCol h4 {
+  font-family: 'PT Root UI Bold';
 }
 
 @media (max-width: 992px) {

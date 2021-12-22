@@ -26,16 +26,17 @@ const Winner: React.FC<WinnerProps> = props => {
       <ShortAddress address={winner} avatar={true} />
     );
 
+  const isCool = useAppSelector(state => state.application.stateBackgroundColor) === '#d5d7e1';
   const nounderNounContent = <h2>nounders.eth</h2>;
 
   return (
     <Container className={classes.wrapper}>
       <Row className={classes.section}>
         <Col xs={1} lg={12} className={classes.leftCol}>
-          <h4>Winner</h4>
+          <h4 style={{ fontFamily: 'PT Root UI Bold', color: isCool ? "var(--brand-cool-light-text)" : "var(--brand-warm-light-text)"}}>Winner</h4>
         </Col>
         <Col xs="auto" lg={12}>
-          <h2>{isNounders ? nounderNounContent : nonNounderNounContent}</h2>
+          <h2 style={{color: isCool ? "var(--brand-cool-dark-text)" : "var(--brand-warm-dark-text)"}}>{isNounders ? nounderNounContent : nonNounderNounContent}</h2>
         </Col>
       </Row>
     </Container>

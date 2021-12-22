@@ -4,6 +4,7 @@ import { Auction } from '../../wrappers/nounsAuction';
 import classes from './AuctionTimer.module.css';
 import { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useAppSelector } from '../../hooks';
 
 dayjs.extend(duration);
 
@@ -18,6 +19,8 @@ const AuctionTimer: React.FC<{
   auctionTimerRef.current = auctionTimer;
 
   const timerDuration = dayjs.duration(auctionTimerRef.current, 's');
+
+
 
   // timer logic
   useEffect(() => {
@@ -44,20 +47,22 @@ const AuctionTimer: React.FC<{
 
   const flooredMinutes = Math.floor(timerDuration.minutes());
   const flooredSeconds = Math.floor(timerDuration.seconds());
+  const isCool = useAppSelector(state => state.application.stateBackgroundColor) === "#d5d7e1";
 
   if (!auction) return null;
+
 
   return (
     <div className={classes.auctionTimerSection}>
       <Container className={classes.wrapper}>
         <Row className={classes.section}>
           <Col xs={4} lg={12} className={classes.leftCol}>
-            <h4 className={classes.title}>
+            <h4 className={classes.title} style={{color: isCool ? "var(--brand-cool-light-text)" : "var(--brand-warm-light-text)"}}>
               {window.innerWidth < 992 ? auctionContentShort : auctionContentLong}
             </h4>
           </Col>
           <Col xs="auto" lg={12}>
-            <h2 className={classes.timerWrapper}>
+            <h2 className={classes.timerWrapper} style={{color: isCool ? "var(--brand-cool-dark-text)" : "var(--brand-warm-dark-text)"}}>
               <div className={classes.timerSection}>
                 <span>
                   {`${Math.floor(timerDuration.hours())}`}

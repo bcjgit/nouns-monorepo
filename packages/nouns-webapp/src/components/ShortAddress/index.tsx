@@ -15,10 +15,12 @@ const ShortAddress: React.FC<{ address: string; avatar?: boolean }> = props => {
       <div className={classes.shortAddress}>
         {avatar && (
           <div key={address}>
-            <Davatar size={24} address={address} provider={provider} />
+            <Davatar size={28} address={address} provider={provider} />
           </div>
         )}
-        {ens ? ens : shortAddress}
+        <span style={{ letterSpacing: '0.2px', fontFamily: 'PT Root UI Bold' }}>
+          {ens ? ens : shortAddress}
+        </span>
       </div>
     );
   }
