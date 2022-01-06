@@ -356,8 +356,8 @@ const VotePage = ({
             <Card className={classes.voteCountCard}>
               <Card.Body className="p-2">
                 <Card.Text className="py-2 m-0">
-                  <span>For</span>
-                  <span>{proposal?.forCount}</span>
+                  <span className={`${classes.voteCardHeaderText} ${classes.for}`}>For</span>
+                  <span className={classes.voteCardVoteCount}>{proposal?.forCount}</span>
                 </Card.Text>
                 <ProgressBar variant="success" now={forPercentage} />
               </Card.Body>
@@ -367,8 +367,8 @@ const VotePage = ({
             <Card className={classes.voteCountCard}>
               <Card.Body className="p-2">
                 <Card.Text className="py-2 m-0">
-                  <span>Against</span>
-                  <span>{proposal?.againstCount}</span>
+                  <span className={`${classes.voteCardHeaderText} ${classes.against}`}>Against</span>
+                  <span className={classes.voteCardVoteCount}>{proposal?.againstCount}</span>
                 </Card.Text>
                 <ProgressBar variant="danger" now={againstPercentage} />
               </Card.Body>
@@ -378,8 +378,8 @@ const VotePage = ({
             <Card className={classes.voteCountCard}>
               <Card.Body className="p-2">
                 <Card.Text className="py-2 m-0">
-                  <span>Abstain</span>
-                  <span>{proposal?.abstainCount}</span>
+                  <span className={`${classes.voteCardHeaderText} ${classes.abstain}`}>Abstain</span>
+                  <span className={classes.voteCardVoteCount}>{proposal?.abstainCount}</span>
                 </Card.Text>
                 <ProgressBar variant="info" now={abstainPercentage} />
               </Card.Body>

@@ -108,3 +108,25 @@
   font-size: 42px;
   font-family: 'Londrina Solid';
 }
+
+.voteCardHeaderText {
+  font-size: 24px;
+  font-family: 'Londrina Solid';
+}
+
+.voteCardVoteCount {
+  font-size: 22px;
+  font-family: 'PT Root UI Bold';
+}
+
+.for {
+  color: var(--brand-color-green);
+}
+
+.against {
+  color: var(--brand-color-red);
+}
+
+.abstain {
+  color: var(--brand-gray-light-text);
+}
