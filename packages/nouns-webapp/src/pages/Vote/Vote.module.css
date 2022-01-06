@@ -29,10 +29,20 @@
 }
 
 .section {
-  border-top: 1px solid #e9ecef;
   word-wrap: break-word;
   padding-top: 2rem;
   margin-top: 2rem;
+}
+
+/*
+* Add some margin to the markdown section on desktop.
+* We remove it on mobile because it looks sorta strange. 
+*/
+@media (min-width: 992px) {
+  .section {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 }
 
 .markdown {
