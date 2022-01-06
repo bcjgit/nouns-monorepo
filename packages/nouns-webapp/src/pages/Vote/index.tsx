@@ -388,7 +388,6 @@ const VotePage = ({
         </Row>
         <Row>
           <Col className={classes.section}>
-            <h5>Description</h5>
             {proposal?.description && (
               <ReactMarkdown
                 className={classes.markdown}

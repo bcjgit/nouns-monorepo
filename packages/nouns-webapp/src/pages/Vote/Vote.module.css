@@ -35,20 +35,25 @@
   margin-top: 2rem;
 }
 
+.markdown {
+  font-family: 'PT Root UI';
+}
+
 .markdown h1 {
   font-size: 1.7rem;
   margin-top: 1rem;
-  font-weight: bold;
+  font-family: 'Londrina Solid';
 }
 
 .markdown h2 {
   font-size: 1.5rem;
   margin-top: 1rem;
-  font-weight: bold;
+  font-family: 'PT Root UI Bold';
 }
 
 .markdown h3 {
   font-size: 1.3rem;
+  font-family: 'PT Root UI Bold';
 }
 
 .markdown img {
