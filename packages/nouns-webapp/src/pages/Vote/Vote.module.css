@@ -82,3 +82,14 @@
 .leftArrowCool:hover {
   opacity: 50%;
 }
+
+.headerRow span {
+  color: #8c8d92;
+  font-size: 24px;
+  font-family: 'Londrina Solid';
+}
+.headerRow h1 {
+  color: #14161b;
+  font-size: 42px;
+  font-family: 'Londrina Solid';
+}

@@ -238,10 +238,16 @@ const VotePage = ({
       </Col>
       <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
         <div className="d-flex justify-content-between align-items-center">
-          <h3 className={classes.proposalId}>Proposal {proposal?.id}</h3>
+          {/* <h3 className={classes.proposalId}>Proposal {proposal?.id}</h3> */}
+          <div className={classes.headerRow}>
+            <span>Proposal 17</span>
+            <h1>
+                Fund an Engineer, Community manager, and Designer for Nouns
+            </h1>
+          </div>
           <ProposalStatus status={proposal?.status}></ProposalStatus>
         </div>
-        <div>
+        {/* <div>
           {startDate && startDate.isBefore(now) ? null : proposal ? (
             <span>
               Voting starts approximately {startDate?.format('MMMM D, YYYY h:mm A z')}{' '}
@@ -273,7 +279,7 @@ const VotePage = ({
           ) : (
             ''
           )}
-        </div>
+        </div> */}
         {proposal && proposalActive && (
           <>
             {showBlockRestriction && !hasVoted && (
