@@ -17,6 +17,8 @@
 
 .voteCountCard {
   margin-top: 1rem;
+  padding: .5rem;
+  border-radius: 12px;
 }
 
 .proposalId {
