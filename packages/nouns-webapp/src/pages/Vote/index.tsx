@@ -293,9 +293,9 @@ const VotePage = ({
       <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
         <div className="d-flex justify-content-between align-items-center">
           <div className={classes.headerRow}>
-            <span>Proposal 17</span>
+            <span>Proposal {proposal.id}</span>
             <h1>
-                Fund an Engineer, Community manager, and Designer for Nouns
+              {proposal.title}
             </h1>
           </div>
           <ProposalStatus status={proposal?.status}></ProposalStatus>
@@ -413,7 +413,7 @@ const VotePage = ({
                   <span className={classes.voteCardVoteCount}>{proposal?.forCount}</span>
                 </Card.Text>
                 <ProgressBar variant="success" now={forPercentage} />
-                <Row>
+                <Row className={classes.nounProfilePics}>
                   {nounIdsToCircleNouns(forNouns)}
                 </Row>
               </Card.Body>
@@ -427,7 +427,7 @@ const VotePage = ({
                   <span className={classes.voteCardVoteCount}>{proposal?.againstCount}</span>
                 </Card.Text>
                 <ProgressBar variant="danger" now={againstPercentage} />
-                <Row>
+                <Row className={classes.nounProfilePics}>
                   {nounIdsToCircleNouns(againstNouns)}
                 </Row>
               </Card.Body>
@@ -441,13 +441,67 @@ const VotePage = ({
                   <span className={classes.voteCardVoteCount}>{proposal?.abstainCount}</span>
                 </Card.Text>
                 <ProgressBar variant="info" now={abstainPercentage} />
-                <Row>
+                <Row className={classes.nounProfilePics}>
                   {nounIdsToCircleNouns(abstainNouns)}
                 </Row>
               </Card.Body>
             </Card>
           </Col>
         </Row>
+
+        <Row>
+          <Col lg={4}>
+            <Card className={classes.voteCountCard}>
+              <Card.Body className="p-2">
+               <Row className={classes.voteMetadataRow}>
+                 <Col>
+                  <h1>Threshold</h1>
+                </Col>
+                <Col>
+                  <span>Differential</span>
+                  <h3>{proposal.forCount - proposal.againstCount} votes</h3>
+                </Col>
+                <Col>
+                  <span>Quorum</span>
+                  <h3>{proposal.quorumVotes} votes</h3>
+                </Col>
+               </Row> 
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col lg={4}>
+            <Card className={classes.voteCountCard}>
+              <Card.Body className="p-2">
+              <Row className={classes.voteMetadataRow}>
+                 <Col lg={4}>
+                  <h1>Ends</h1>
+                </Col>
+                <Col>
+                  <span>{endDate && endDate.format('h:mm A z')}</span>
+                  <h3>{endDate && endDate.format('MMMM D, YYYY')}</h3>
+                </Col>
+               </Row> 
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col lg={4}>
+            <Card className={classes.voteCountCard}>
+              <Card.Body className="p-2">
+              <Row className={classes.voteMetadataRow}>
+                 <Col>
+                  <h1>Snapshot</h1>
+                </Col>
+                <Col>
+                  <span>Taken at block</span>
+                  <h3>{proposal.createdBlock}</h3>
+                </Col>
+               </Row> 
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+
         <Row>
           <Col className={classes.section}>
             {proposal?.description && (

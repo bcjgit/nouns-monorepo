@@ -151,3 +151,24 @@
 .votingNoun {
   margin-top: .5rem;
 }
+
+.nounProfilePics {
+  margin-top: .5rem;
+}
+
+.voteMetadataRow h1 {
+  font-size: 20px;
+  color: var(--brand-gray-light-text);
+  font-family: 'Londrina Solid';
+}
+
+.voteMetadataRow span {
+ font-size: 14px;
+ font-family: 'PT Root UI';
+ color: var(--brand-gray-light-text);
+}
+
+.voteMetadataRow h3 {
+ font-size: 18px;
+ font-family: 'PT Root UI Bold';
+}
