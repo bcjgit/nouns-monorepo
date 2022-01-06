@@ -266,9 +266,26 @@ const VotePage = ({
   const forNouns = getNounVotes(data, 1);
   const againstNouns = getNounVotes(data, 0);
   const abstainNouns = getNounVotes(data, 2);
-  console.log("For Nouns: ", forNouns);
-  console.log("Aginst Nouns:", againstNouns);
-  console.log(data);
+
+  const startOrEndTimeCopy = () => {
+    if (startDate?.isBefore(now) && endDate?.isAfter(now)) {
+      return 'Ends';
+    } else if (endDate?.isBefore(now)) {
+      return 'Ended'
+    } else {
+      return 'Starts';
+    }
+  };
+
+  const startOrEndTimeTime = () => {
+    if (!startDate?.isBefore(now)) {
+      return startDate
+    } else {
+      return endDate
+    }
+  };
+
+  
 
 
   return (
@@ -474,11 +491,11 @@ const VotePage = ({
               <Card.Body className="p-2">
               <Row className={classes.voteMetadataRow}>
                  <Col lg={4}>
-                  <h1>Ends</h1>
+                  <h1>{startOrEndTimeCopy()}</h1>
                 </Col>
                 <Col>
-                  <span>{endDate && endDate.format('h:mm A z')}</span>
-                  <h3>{endDate && endDate.format('MMMM D, YYYY')}</h3>
+                  <span>{startOrEndTimeTime() && startOrEndTimeTime()?.format('h:mm A z')}</span>
+                  <h3>{startOrEndTimeTime() && startOrEndTimeTime()?.format('MMMM D, YYYY')}</h3>
                 </Col>
                </Row> 
               </Card.Body>
