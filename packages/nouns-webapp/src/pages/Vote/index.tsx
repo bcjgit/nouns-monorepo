@@ -289,9 +289,6 @@ const VotePage = ({
   const isWalletConnected = !(activeAccount === undefined);
   const isActiveForVoting = startDate?.isBefore(now) && endDate?.isAfter(now);
 
-  
-
-
   return (
     <Section fullWidth={false} className={classes.votePage}>
       <VoteModal
@@ -305,30 +302,34 @@ const VotePage = ({
       />
       <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
         <div className="d-flex justify-content-between align-items-center">
-          <button
-                    className={classes.leftArrowCool}
-                    onClick={backButtonClickHandler}
-                >
-                ←
-          </button>
-          <div className={classes.headerRow}>
-            <span>Proposal {proposal.id}</span>
-            <h1>
-              {proposal.title}
-            </h1>
+          <div className="d-flex justify-content-start align-items-start">
+                <button
+                          className={classes.leftArrowCool}
+                          onClick={backButtonClickHandler}
+                      >
+                      ←
+                </button>
+                <div className={classes.headerRow}>
+                  <span>Proposal {proposal.id}</span>
+                  <h1>
+                    {proposal.title}
+                  </h1>
+                </div>
+                <ProposalStatus status={proposal?.status}></ProposalStatus>
           </div>
-          {isWalletConnected ? (<></>) : (
-            <div className={classes.connectWalletText}>
-              Connect a wallet to vote.
-            </div>
-          )}
-          <Button
-                    className={isWalletConnected && isActiveForVoting ?  classes.submitBtn : classes.submitBtnDisabled}
-                    onClick={backButtonClickHandler}
-          >
-                  Submit vote
-          </Button>
-          <ProposalStatus status={proposal?.status}></ProposalStatus>
+          <div className="d-flex justify-content-end align-items-end">
+                {isWalletConnected ? (<></>) : (
+                  <div className={classes.connectWalletText}>
+                    Connect a wallet to vote.
+                  </div>
+                )}
+                <Button
+                          className={isWalletConnected && isActiveForVoting ?  classes.submitBtn : classes.submitBtnDisabled}
+                          onClick={backButtonClickHandler}
+                >
+                        Submit vote
+                </Button>
+          </div>
         </div>
         {proposal && proposalActive && (
           <>
