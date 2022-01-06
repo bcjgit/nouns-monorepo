@@ -212,6 +212,11 @@ const VotePage = ({
     [executeProposalState, onTransactionStateChange, setModal],
   );
 
+  const backButtonClickHandler = () => {
+    // eslint-disable-next-line no-restricted-globals
+    location.href = "/vote"
+}
+
   return (
     <Section fullWidth={false} className={classes.votePage}>
       <VoteModal
@@ -224,7 +229,12 @@ const VotePage = ({
         vote={vote}
       />
       <Col lg={{ span: 10, offset: 1 }}>
-        <Link to="/vote">← All Proposals</Link>
+          <button
+                    className={classes.leftArrowCool}
+                    onClick={backButtonClickHandler}
+                >
+                ←
+          </button>
       </Col>
       <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
         <div className="d-flex justify-content-between align-items-center">
