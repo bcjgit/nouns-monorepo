@@ -25,7 +25,7 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import { utils } from 'ethers';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { nounVotesForProposalQuery } from '../../wrappers/subgraph';
 import { useQuery } from '@apollo/client';
 import {BigNumber as EthersBN } from "ethers";
@@ -248,6 +248,7 @@ const VotePage = ({
     // eslint-disable-next-line no-restricted-globals
     location.href = "/vote"
   }
+  const activeAccount = useAppSelector(state => state.account.activeAccount);
 
   const {loading, error, data} = useQuery(nounVotesForProposalQuery(proposal && proposal.id ? proposal?.id : "0"));
   if (!proposal || loading || !data || data.proposals.length === 0) {
@@ -285,6 +286,9 @@ const VotePage = ({
     }
   };
 
+  const isWalletConnected = !(activeAccount === undefined);
+  const isActiveForVoting = startDate?.isBefore(now) && endDate?.isAfter(now);
+
   
 
 
@@ -299,57 +303,33 @@ const VotePage = ({
         availableVotes={availableVotes}
         vote={vote}
       />
-      <Col lg={{ span: 10, offset: 1 }}>
+      <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
+        <div className="d-flex justify-content-between align-items-center">
           <button
                     className={classes.leftArrowCool}
                     onClick={backButtonClickHandler}
                 >
                 ←
           </button>
-      </Col>
-      <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
-        <div className="d-flex justify-content-between align-items-center">
           <div className={classes.headerRow}>
             <span>Proposal {proposal.id}</span>
             <h1>
               {proposal.title}
             </h1>
           </div>
+          {isWalletConnected ? (<></>) : (
+            <div className={classes.connectWalletText}>
+              Connect a wallet to vote.
+            </div>
+          )}
+          <Button
+                    className={isWalletConnected && isActiveForVoting ?  classes.submitBtn : classes.submitBtnDisabled}
+                    onClick={backButtonClickHandler}
+          >
+                  Submit vote
+          </Button>
           <ProposalStatus status={proposal?.status}></ProposalStatus>
         </div>
-        {/* <div>
-          {startDate && startDate.isBefore(now) ? null : proposal ? (
-            <span>
-              Voting starts approximately {startDate?.format('MMMM D, YYYY h:mm A z')}{' '}
-              {startDate && `(${(startDate as any).fromNow()})`}{' '}
-            </span>
-          ) : (
-            ''
-          )}
-        </div>
-        <div>
-          {endDate && endDate.isBefore(now) ? (
-            <>
-              <div>Voting ended {endDate.format('MMMM D, YYYY h:mm A z')}</div>
-              <div>
-                This proposal has {quorumReached ? 'reached' : 'failed to reach'} quorum{' '}
-                {proposal?.quorumVotes !== undefined && `(${proposal.quorumVotes} votes)`}
-              </div>
-            </>
-          ) : proposal ? (
-            <>
-              <div>
-                Voting ends approximately {endDate?.format('MMMM D, YYYY h:mm A z')}{' '}
-                {endDate && `(${(endDate as any).fromNow()})`}{' '}
-              </div>
-              {proposal?.quorumVotes !== undefined && (
-                <div>A total of {proposal.quorumVotes} votes are required to reach quorum</div>
-              )}
-            </>
-          ) : (
-            ''
-          )}
-        </div> */}
         {proposal && proposalActive && (
           <>
             {showBlockRestriction && !hasVoted && (
