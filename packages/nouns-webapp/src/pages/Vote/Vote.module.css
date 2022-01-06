@@ -132,3 +132,22 @@
 .abstain {
   color: var(--brand-gray-light-text);
 }
+
+.spinner {
+  opacity: 50%;
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.grayCircle {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  background-color: #E0E0E7;
+  opacity: 50%;
+  margin-top: .5rem;
+}
+
+.votingNoun {
+  margin-top: .5rem;
+}

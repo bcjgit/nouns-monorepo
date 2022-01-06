@@ -26,12 +26,44 @@ import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import { utils } from 'ethers';
 import { useAppDispatch } from '../../hooks';
+import { nounVotesForProposalQuery } from '../../wrappers/subgraph';
+import { useQuery } from '@apollo/client';
+import {BigNumber as EthersBN } from "ethers";
+import { StandaloneNounCircular } from "../../components/StandaloneNoun";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(advanced);
 
 const AVERAGE_BLOCK_TIME_IN_SECS = 13;
+const NOUNS_PER_VOTE_CARD = 16;
+
+// Helper function to response from graph into flat list of nounIds that voted
+// supportDetailed for the given prop
+const getNounVotes = (data:any, supportDetailed: number) => {
+  return data.proposals[0].votes.filter((vote:any) => vote.supportDetailed === supportDetailed).map(
+    (vote:any) => vote.nouns
+  ).flat(1).map((noun:any) => noun.id);
+};
+
+const nounIdsToCircleNouns = (nounIds: Array<string> ) => {
+  nounIds = nounIds.concat(Array(NOUNS_PER_VOTE_CARD).fill("-1")).slice(0,NOUNS_PER_VOTE_CARD)
+  return nounIds.map((nounId:string)=> {
+    if(nounId === "-1") {
+      return (
+        <Col lg={3}>
+          <div className={classes.grayCircle}/>
+        </Col>
+      );
+    }
+    return (
+      <Col className={classes.votingNoun} lg={3}>
+        <StandaloneNounCircular nounId = {EthersBN.from(nounId)} />
+      </Col>
+    );
+  }
+  );
+};
 
 const VotePage = ({
   match: {
@@ -215,7 +247,29 @@ const VotePage = ({
   const backButtonClickHandler = () => {
     // eslint-disable-next-line no-restricted-globals
     location.href = "/vote"
-}
+  }
+
+  const {loading, error, data} = useQuery(nounVotesForProposalQuery(proposal && proposal.id ? proposal?.id : "0"));
+  if (!proposal || loading || !data || data.proposals.length === 0) {
+    return (
+      <div className={classes.spinner}>
+        <Spinner animation="border" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <>Failed to fetch</>;
+  }
+
+
+  const forNouns = getNounVotes(data, 1);
+  const againstNouns = getNounVotes(data, 0);
+  const abstainNouns = getNounVotes(data, 2);
+  console.log("For Nouns: ", forNouns);
+  console.log("Aginst Nouns:", againstNouns);
+  console.log(data);
+
 
   return (
     <Section fullWidth={false} className={classes.votePage}>
@@ -238,7 +292,6 @@ const VotePage = ({
       </Col>
       <Col lg={{ span: 10, offset: 1 }} className={classes.proposal}>
         <div className="d-flex justify-content-between align-items-center">
-          {/* <h3 className={classes.proposalId}>Proposal {proposal?.id}</h3> */}
           <div className={classes.headerRow}>
             <span>Proposal 17</span>
             <h1>
@@ -360,6 +413,9 @@ const VotePage = ({
                   <span className={classes.voteCardVoteCount}>{proposal?.forCount}</span>
                 </Card.Text>
                 <ProgressBar variant="success" now={forPercentage} />
+                <Row>
+                  {nounIdsToCircleNouns(forNouns)}
+                </Row>
               </Card.Body>
             </Card>
           </Col>
@@ -371,6 +427,9 @@ const VotePage = ({
                   <span className={classes.voteCardVoteCount}>{proposal?.againstCount}</span>
                 </Card.Text>
                 <ProgressBar variant="danger" now={againstPercentage} />
+                <Row>
+                  {nounIdsToCircleNouns(againstNouns)}
+                </Row>
               </Card.Body>
             </Card>
           </Col>
@@ -382,6 +441,9 @@ const VotePage = ({
                   <span className={classes.voteCardVoteCount}>{proposal?.abstainCount}</span>
                 </Card.Text>
                 <ProgressBar variant="info" now={abstainPercentage} />
+                <Row>
+                  {nounIdsToCircleNouns(abstainNouns)}
+                </Row>
               </Card.Body>
             </Card>
           </Col>
