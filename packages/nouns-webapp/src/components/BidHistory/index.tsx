@@ -2,15 +2,16 @@ import React from 'react';
 import ShortAddress from '../ShortAddress';
 import _classes from './BidHistory.module.css';
 import dayjs from 'dayjs';
-import link from '../../assets/icons/Link.svg'
+import link from '../../assets/icons/Link.svg';
 import { buildEtherscanTxLink } from '../../utils/etherscan';
 import TruncatedAmount from '../TruncatedAmount';
 import BigNumber from 'bignumber.js';
 import { Bid } from '../../utils/types';
 import { BigNumber as EthersBN } from '@ethersproject/bignumber';
 import { useAuctionBids } from '../../wrappers/onDisplayAuction';
+import { useAppSelector } from '../../hooks';
 
-const bidItem = (bid: Bid, index: number, classes: any) => {
+function bidItem(bid: Bid, index: number, classes: any, isCool?: boolean) {
   const bidAmount = <TruncatedAmount amount={new BigNumber(EthersBN.from(bid.value).toString())} />;
   const date = `${dayjs(bid.timestamp.toNumber() * 1000).format('MMM DD')} at ${dayjs(
     bid.timestamp.toNumber() * 1000,
@@ -20,7 +21,7 @@ const bidItem = (bid: Bid, index: number, classes: any) => {
   const isMobile = window.innerWidth < 992;
 
   return (
-    <li key={index} className={classes.bidRow}>
+    <li key={index} className={isCool ? classes.bidRowCool : classes.bidRowWarm}>
       <div className={classes.bidItem}>
         <div className={classes.leftSectionWrapper}>
           <div className={classes.bidder}>
@@ -41,17 +42,17 @@ const bidItem = (bid: Bid, index: number, classes: any) => {
       </div>
     </li>
   );
-};
+}
 
 const BidHistory: React.FC<{ auctionId: string; max: number; classes?: any }> = props => {
   const { auctionId, max, classes = _classes } = props;
-
+  const isCool = useAppSelector(state => state.application.stateBackgroundColor) === '#d5d7e1';
   const bids = useAuctionBids(EthersBN.from(auctionId));
   const bidContent =
     bids &&
     bids
       .map((bid: Bid, i: number) => {
-        return bidItem(bid, i, classes);
+        return bidItem(bid, i, classes, isCool);
       })
       .slice(0, max);
 

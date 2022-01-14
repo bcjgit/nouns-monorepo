@@ -35,8 +35,9 @@
   }
 
   .wrapper {
-    padding-left: 0.5rem;
-    padding-right: 2rem;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .leftCol {

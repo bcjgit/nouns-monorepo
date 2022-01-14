@@ -7,14 +7,17 @@
 .connectBtn {
   cursor: pointer;
 }
+
 .connectBtn:hover,
 .connectBtn:active,
 .connectBtn:focus {
   cursor: pointer !important;
 }
+
 .disconnectBtn {
   cursor: pointer;
 }
+
 .disconnectBtn:hover,
 .disconnectBtn:active,
 .disconnectBtn:focus {
@@ -41,6 +44,7 @@
   padding: 0.5rem 0.8rem !important;
   color: var(--brand-black) !important;
 }
+
 .nounsNavLink:hover {
   color: var(--brand-dark-red) !important;
 }

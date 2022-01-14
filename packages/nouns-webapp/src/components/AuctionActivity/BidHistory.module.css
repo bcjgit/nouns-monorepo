@@ -11,14 +11,45 @@
   margin-bottom: 8px;
 }
 
-.bidRow {
+.bidRowCool {
   background-color: var(--brand-cool-accent);
+  font-family: 'PT Root UI', sans-serif;
   padding: 0.5rem 0.75rem;
-  border-radius: 10px;
+  border-radius: 12px;
   border-bottom: 1px solid rgba(211, 211, 211, 0.322);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: bold;
   transition: all 0.2s ease-in-out;
+}
+
+.bidRowWarm {
+  background-color: var(--brand-warm-accent);
+  font-family: 'PT Root UI', sans-serif;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  border-bottom: 1px solid rgba(211, 211, 211, 0.322);
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.bidRowWarm a {
+  color: var(--brand-color-red) !important;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.bidRowCool a {
+  color: var(--brand-color-blue) !important;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.bidRowWarm a:hover, .bidRowCool a:hover {
+  filter: brightness(110%);
 }
 
 .bidRow:hover {
@@ -36,7 +67,7 @@
   flex-direction: column;
 }
 
-.bidder > div > div {
+.bidder>div>div {
   color: var(--brand-cool-dark-text);
   font-family: 'PT Root UI Bold';
   font-size: 18px;

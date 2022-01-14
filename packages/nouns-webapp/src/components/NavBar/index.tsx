@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
 import ShortAddress from '../ShortAddress';
 import classes from './NavBar.module.css';
-import glasses from '../../assets/glasses.svg';
+import logo from '../../assets/logo.svg';
 import { useState } from 'react';
 import { useEtherBalance, useEthers } from '@usedapp/core';
 import WalletConnectModal from '../WalletConnectModal';
@@ -41,7 +41,9 @@ const NavBar = () => {
       <Nav.Item>
         <Nav.Link className={clsx(classes.nounsNavLink, classes.addressNavLink)} disabled>
           <span className={classes.greenStatusCircle} />
-          <span>{activeAccount && <ShortAddress address={activeAccount} avatar={true} />}</span>
+          <span>
+            {activeAccount && <ShortAddress size={40} address={activeAccount} avatar={true} />}
+          </span>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
@@ -80,13 +82,16 @@ const NavBar = () => {
       {showConnectModal && activeAccount === undefined && (
         <WalletConnectModal onDismiss={hideModalHandler} />
       )}
-      <Navbar expand="lg" style={{ backgroundColor: `${useStateBg ? stateBgColor : ''}` }}>
+      <Navbar
+        expand="lg"
+        style={{ backgroundColor: `${useStateBg ? stateBgColor : ''}`, padding: '2rem 0rem' }}
+      >
         <Container>
           <Navbar.Brand as={Link} to="/" className={classes.navBarBrand}>
             <img
-              src={glasses}
-              width="108"
-              height="108"
+              src={logo}
+              width="72"
+              height="72"
               className="d-inline-block align-middle"
               alt="Nouns logo"
             />
@@ -107,7 +112,10 @@ const NavBar = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Treasury <strong style={{letterSpacing: '0.8px'}}>Ξ {Number(utils.formatEther(treasuryBalance)).toFixed(0)}</strong>
+                  Treasury{' '}
+                  <strong style={{ letterSpacing: '0.8px' }}>
+                    Ξ {Number(utils.formatEther(treasuryBalance)).toFixed(0)}
+                  </strong>
                 </Nav.Link>
               )}
             </Nav.Item>

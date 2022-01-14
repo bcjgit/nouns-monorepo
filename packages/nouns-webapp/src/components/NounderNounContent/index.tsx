@@ -8,10 +8,12 @@ import AuctionTitleAndNavWrapper from '../AuctionTitleAndNavWrapper';
 import { Link } from 'react-router-dom';
 import nounContentClasses from './NounderNounContent.module.css';
 import auctionBidClasses from '../AuctionActivity/BidHistory.module.css';
-import bidBtnClasses from '../BidHistoryBtn//BidHistoryBtn.module.css';
+import bidBtnClasses from '../BidHistoryBtn/BidHistoryBtn.module.css';
 import auctionActivityClasses from '../AuctionActivity/AuctionActivity.module.css';
 import CurrentBid, { BID_N_A } from '../CurrentBid';
 import Winner from '../Winner';
+
+import { useAppSelector } from '../../hooks';
 
 const NounderNounContent: React.FC<{
   mintTimestamp: BigNumber;
@@ -29,6 +31,8 @@ const NounderNounContent: React.FC<{
     onPrevAuctionClick,
     onNextAuctionClick,
   } = props;
+
+  const isCool = useAppSelector(state => state.application.stateBackgroundColor) === '#d5d7e1';
 
   return (
     <AuctionActivityWrapper>
@@ -64,7 +68,12 @@ const NounderNounContent: React.FC<{
       <Row className={auctionActivityClasses.activityRow}>
         <Col lg={12}>
           <ul className={auctionBidClasses.bidCollection}>
-            <li className={`${auctionBidClasses.bidRow} ${nounContentClasses.bidRow}`}>
+            <li
+              className={
+                (isCool ? `${auctionBidClasses.bidRowCool}` : `${auctionBidClasses.bidRowWarm}`) +
+                ` ${nounContentClasses.bidRow}`
+              }
+            >
               All Noun auction proceeds are sent to the{' '}
               <Link to="/vote" className={nounContentClasses.link}>
                 Nouns DAO
@@ -75,9 +84,16 @@ const NounderNounContent: React.FC<{
               Nounders.
             </li>
           </ul>
-          <div className={bidBtnClasses.bidHistoryWrapper}>
-            <Link to="/nounders" className={bidBtnClasses.bidHistory}>
-              Learn More →
+          <div
+            className={
+              isCool ? bidBtnClasses.bidHistoryWrapperCool : bidBtnClasses.bidHistoryWrapperWarm
+            }
+          >
+            <Link
+              to="/nounders"
+              className={isCool ? bidBtnClasses.bidHistoryCool : bidBtnClasses.bidHistoryWarm}
+            >
+              Learn more →
             </Link>
           </div>
         </Col>

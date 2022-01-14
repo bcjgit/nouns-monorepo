@@ -2,6 +2,7 @@
   align-self: flex-end;
   width: 100%;
 }
+
 .nounContentCol {
   display: flex;
 }
@@ -11,12 +12,21 @@
   padding-right: 5rem;
   padding-bottom: 1rem;
   min-height: 520px;
-  align-self: start !important; /* maintains auction arrow buttons fixed from auction to auction  */
+  align-self: start !important;
+  /* maintains auction arrow buttons fixed from auction to auction  */
 }
 
 @media (max-width: 992px) {
   .auctionActivityCol {
     padding-bottom: 2rem;
+    padding-top: 2rem;
     padding-right: unset;
+  }
+
+  .nounWrapper {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: -3rem;
   }
 }
