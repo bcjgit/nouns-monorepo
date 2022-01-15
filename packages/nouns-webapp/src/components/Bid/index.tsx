@@ -241,6 +241,15 @@ const Bid: React.FC<{
   const isMobile = window.innerWidth < 992;
 
   const minBidCopy = isMobile ? `> ${minBidEth(minBid)}` : `Ξ ${minBidEth(minBid)} or more`;
+  const fomoNounsBtnOnClickHandler = () => {
+    // Open Fomo Nouns in a new tab
+    window.open(
+      'https://fomonouns.wtf',
+      '_blank' 
+    )?.focus();
+  };
+
+  const isWalletConnected = activeAccount !== undefined;
 
   return (
     <>
@@ -265,19 +274,35 @@ const Bid: React.FC<{
             />
           </>
         )}
-        {isDisconnected ? <Button
-          className={classes.bidBtn}
-          onClick={showModalHandler}
-        >
-          Connect
-        </Button> : <Button
-          className={auctionEnded ? classes.bidBtnAuctionEnded : classes.bidBtn}
-          onClick={auctionEnded ? settleAuctionHandler : placeBidHandler}
-          disabled={isDisabled}
-        >
-          {bidButtonContent.loading ? <Spinner animation="border" /> : bidButtonContent.content}
-        </Button>}
-        
+        {
+          !auctionEnded ? (
+              <Button
+                className={auctionEnded ? classes.bidBtnAuctionEnded : classes.bidBtn}
+                onClick={auctionEnded ? settleAuctionHandler : placeBidHandler}
+                disabled={isDisabled}
+              >
+                {bidButtonContent.loading ? <Spinner animation="border" /> : bidButtonContent.content}
+              </Button>
+          ) 
+          : (
+            <>
+              <Button
+                className={classes.bidBtnAuctionEnded}
+                onClick={fomoNounsBtnOnClickHandler}
+              >
+                Vote for the next Noun ⌐◧-◧
+            </Button>
+            {/* Only show force settle button if wallet connected */}
+            {isWalletConnected &&  (<p className={classes.emergencySettleWrapper}>
+              <button onClick={settleAuctionHandler} className={
+                classes.emergencySettleButton
+              }>
+                Pay to settle manually
+              </button>
+            </p>)}
+            </>
+          )
+        }
       </InputGroup>
     </>
   );

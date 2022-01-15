@@ -142,9 +142,22 @@
   .customPlaceholder {
     left: 40%;
   }
-
   .customPlaceholderBidAmt {
     left: 5%;
     top: 12%;
   }
+  .emergencySettleWrapper {
+    text-align: center;
+  }
+}
+
+.emergencySettleButton {
+  color: var(--brand-dark-red);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
