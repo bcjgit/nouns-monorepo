@@ -63,9 +63,9 @@ const Bid: React.FC<{
 
   const [showConnectModal, setShowConnectModal] = useState(false);
 
-  const showModalHandler = () => {
-    setShowConnectModal(true);
-  };
+//  const showModalHandler = () => {
+//    setShowConnectModal(true);
+//  };
   const hideModalHandler = () => {
     setShowConnectModal(false);
   };
@@ -236,7 +236,7 @@ const Bid: React.FC<{
   const isDisabled =
     placeBidState.status === 'Mining' || settleAuctionState.status === 'Mining' || !activeAccount;
 
-  const isDisconnected = !activeAccount
+  //const isDisconnected = !activeAccount
 
   const isMobile = window.innerWidth < 992;
 
