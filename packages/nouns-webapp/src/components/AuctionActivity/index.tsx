@@ -21,7 +21,6 @@ import CurrentBid from '../CurrentBid';
 import NounInfoCard from '../../components/NounInfoCard';
 import StandaloneNoun from '../StandaloneNoun';
 import Winner from '../Winner';
-import { buildEtherscanAddressLink } from '../../utils/etherscan';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 

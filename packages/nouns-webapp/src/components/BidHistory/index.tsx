@@ -35,7 +35,7 @@ const bidItem = (bid: Bid, index: number, classes: any, isCool?: boolean) => {
           <div className={classes.bidAmount}>{bidAmount}</div>
           <div className={classes.linkSymbol}>
             <a href={txLink} target="_blank" rel="noreferrer">
-              <img src={link} width={24} />
+              <img src={link} width={24} alt="" />
             </a>
           </div>
         </div>
