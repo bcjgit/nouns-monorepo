@@ -1,9 +1,9 @@
 .wrapper {
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 16px;
     font-family: 'PT Root UI Bold';
-    padding: 0px 12px 0px 8px;
-    
+    padding: 2px 12px 4px 12px;
+    transition: all 0.125s ease-in-out;
 }
 
 .button {
@@ -13,7 +13,6 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    padding-bottom: .25rem;
 }
 
 .icon {
@@ -37,7 +36,12 @@
 }
 
 .treasuryBalance {
-    font-size: 15px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.icon {
+    padding-top: 2px;
 }
 
 .warmInfo .treasuryBalance {
@@ -61,7 +65,6 @@
     background-color: white;
     color: black;
 }
-
 
 .warmInfo {
     color: #B6A9A7;
